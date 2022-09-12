@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    #userstory {
+        display: none;
+        }
+</style>
+<script>
+    function hider() {
+      var userstory = document.getElementById("userstory");
+      userstory.style.display = "inline";
+    }
+</script>
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+    <legend class="border-bottom mb-4">Profile Information:</legend>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="media">
+            <div class="media-body">
+                <h2 class="account-heading">{{ form.instance.username }}
+                </h2>
+                <p class="text-secondary">{{ form.instance.first_name }} {{ form.instance.last_name }}</p>
+                <p class="text-secondary">{{ form.instance.email }}</p>
+                <a onclick="hider()">Stories by: {{ form.instance.username }}</a>
+                <div id ='userstory'>
+                {% for story in stories %}
+
+                        <h2 class="card-title">{{ story.title }}</h2>
+                        <p class="card-text text-muted h6"> {{ story.created_on}} </p>
+                        <p class="card-text">{{story.content|slice:":100" }}<span id="dots">...</span> 
+                            <span id="more" >{{story.content|slice:"100:" }}</span>
+                            
+                        </p>
+                {% endfor %}
+                </div>
+                <p></p>
+            </div>
+        </div>
+
+        {% if user.username == form.instance.username %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Edit Profile Information</legend>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.first_name|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.last_name|as_crispy_field }}
+                    </div>
+                </div> 
+                {{ form.email|as_crispy_field }}
+               
+
+                <a href="/">Change password?</a>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+            <li><a href="{% url 'logout'%}?next={% url 'index' %}">Logout</a></li>
+
+        {% endif %}
+    </form>
+</div>
+{% endblock content %}

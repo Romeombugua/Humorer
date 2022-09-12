@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div id="home2"><h1 class="head-sub-main">A day without memes is full of stress, depression and hypertension which ultimately
+      leads to photosynthesis
+    </h1></div>
+
+    {% if memes %}
+    <div style="padding-top: 10%;" class="bgImage" >
+      <div class="cont">
+    
+
+      {% for meme in memes %}
+      <div class="row">
+
+          <div class="column">
+            <a target="_blank" href="{{ meme.image.url }}">
+              <img class="meme" src="{{ meme.image.url }}" alt="">
+            </a>
+          </div>
+      </div>
+      {% endfor %}
+
+    
+
+    {% else %}
+      <p>There are no memes in the database.</p>
+    {% endif %}      
+    {% endblock %}
+   

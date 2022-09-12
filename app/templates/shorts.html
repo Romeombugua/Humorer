@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+    {% block content %}
+
+
+    {% if shorts %}
+    <div style="padding-top: 10%;" class="bgImage" >
+      <div class="cont">
+    
+
+      {% for short in shorts %}
+      <div class="row">
+
+          <div class="column">
+            <a target="_blank" href="{{ short.video.url }}">
+              <video class="meme" src="{{ short.video.url }}" alt=""></video>
+            </a>
+          </div>
+      </div>
+      {% endfor %}
+
+    
+
+    {% else %}
+      <p>There are no shorts in the database.</p>
+    {% endif %}      
+    {% endblock %}
+    </div>
+    </div>
+    
+  </div>
+</body>
+</html>
+  

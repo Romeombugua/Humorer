@@ -1,0 +1,30 @@
+{% block content %}
+<div id="home2">
+    <h1 class="head-main">CRACK A RIB</h1>
+    <h2 class="head-sub-main">Dark humor, Memes, Vines, Funny stories all in one place</h2>
+    <h3 class="head-last">You can count on us to lighten up your day</h3>
+    <div class="homebtn"><div id="btnleft"><a href="#joke" >WHITE</a> </div>&nbsp;  <div id="btnright" ><a href=".cont2" >DARK</a></div></div>
+
+</div>
+</div>
+<div style="padding-top: 10%;" class="bgImage" >
+<div class = "cont">
+    
+    {% for joke in jokes %}
+    <ul><li class = 'joke'><span>{{joke}}</span></li></ul>
+    {% endfor %}
+
+</div>
+</div>
+<div style="padding-top: 10%;" class="bgImage" >
+<div class="cont2">
+
+{% for dark_joke in dark_jokes %}
+<ul><li class = 'joke'><span>{{dark_joke}}</span></li></ul>
+{% endfor %}
+
+</div> 
+
+</div>
+
+{% endblock %}
