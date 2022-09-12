@@ -145,7 +145,7 @@ def profile(request, username):
     user_stories = Stories.objects.filter(user__exact = user.id)
     if user:
         form = UserUpdateForm(instance=user)
-        return render(request, 'Accounts.html', context={'form': form, 'stories':user_stories})
+        return render(request, 'accounts.html', context={'form': form, 'stories':user_stories})
 
     return redirect('home')
 
