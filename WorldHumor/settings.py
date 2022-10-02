@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'verify_email.apps.VerifyEmailConfig',
     'app.apps.AppConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -132,8 +134,16 @@ CRISPY_TEMPLATE_PACK="bootstrap4"
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = 'home'
+# Email server
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'info.humorer@gmail.com'
+EMAIL_HOST_PASSWORD = 'zbfgtwrflusafrfc'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'info.humorer@gmail.com'
+
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url

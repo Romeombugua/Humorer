@@ -9,6 +9,7 @@ from .forms import UserUpdateForm, StoryForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from verify_email.email_handler import send_verification_email
 
 def index(request):
     jokes = Jokes.objects.all()[:5]
@@ -119,7 +120,8 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            inactive_user = send_verification_email(request, form)
+            #form.save()
             return redirect('home')
     else:
         form = RegisterForm()

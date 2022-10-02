@@ -29,3 +29,8 @@ urlpatterns = [
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+urlpatterns += [
+    
+	path('verification/', include('verify_email.urls')),	
+
+]
