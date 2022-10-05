@@ -135,6 +135,8 @@ CRISPY_TEMPLATE_PACK="bootstrap4"
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = '/accounts/login/'
+#verify email
+MAX_RETRIES = 2
 # Email server
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
