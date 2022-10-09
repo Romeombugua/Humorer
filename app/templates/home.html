@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="home2">
+<div id="home2" class="bgImage">
     <h1 class="head-main">CRACK A RIB</h1>
     <h2 class="head-sub-main">Dark humor, Memes, Vines, Funny stories all in one place</h2>
     <h3 class="head-last">You can count on us to lighten up your day</h3>
@@ -10,7 +10,7 @@
 </div>
 <div style="padding-top: 10%;" class="bgImage" >
 <div class = "cont">
-    <h3>Welcome {{ user.get_username }}</h3>
+    <h3>Welcome {{ user.first_name }}</h3>
     {% for joke in jokes %}
     <ul><li class = 'joke'><span>{{joke}}</span></li></ul>
     {% endfor %}
