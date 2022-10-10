@@ -13,15 +13,10 @@
     }
 </script>
 <div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
-    <legend class="border-bottom mb-4">Profile Information:</legend>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="media">
             <div class="media-body">
-                <h2 class="account-heading">{{ form.instance.username }}
-                </h2>
-                <p class="text-secondary">{{ form.instance.first_name }} {{ form.instance.last_name }}</p>
-                <p class="text-secondary">{{ form.instance.email }}</p>
                 <a onclick="hider()">Stories by: {{ form.instance.username }}</a>
                 <div id ='userstory'>
                 {% for story in stories %}
@@ -52,7 +47,7 @@
                 {{ form.email|as_crispy_field }}
                
 
-                <a href="/">Change password?</a>
+                <a href="{% url 'password_reset' %}">Change password?</a>
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Update</button>
