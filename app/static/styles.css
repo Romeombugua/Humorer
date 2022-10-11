@@ -117,9 +117,6 @@ body{
 .bg{
     position:relative;
     z-index:1;
-    background-size: contain;
-    height: 100%;
-    width: 100%;
 }
 .bg img{
   display:block;
