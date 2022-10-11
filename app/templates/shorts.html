@@ -8,19 +8,16 @@
     
 
       {% for short in shorts %}
-      <div class="row">
-
-          <div class="column">
-            <a target="_blank" href="{{ short.video }}">
-              <iframe src="{{ short.video }}">
-              </iframe>
-              <video class="meme" src="https://www.youtube.com/watch?v=zCvvLBHH1HU" alt=""></video>
-            </a>
-          </div>
+      <div class="container">
+        <h2>Responsive Embed</h2>
+        <p>Create a responsive video and scale it nicely to the parent element with an 16:9 aspect ratio</p>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="{{ short.video }}"></iframe>
+        </div>
       </div>
       {% endfor %}
 
-    
+      
 
     {% else %}
       <p>There are no shorts in the database.</p>

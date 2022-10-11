@@ -15,6 +15,11 @@ a {
 a:active{
     background-color: #ddd;
 }
+
+iframe{
+  margin-left: 100%;
+}
+
 .mainpg{
   position: absolute;
   opacity: 0;
