@@ -53,6 +53,7 @@
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
+        {% if subscription.status == "active" %}
             {% for story in stories_list %}
             <div class="card mb-4">
                 <div class="card-body">
@@ -80,6 +81,9 @@
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <a class="btn btn-outline-info" href="{% url 'subscribe' %}">subscribe</a>
+        {% endif %}
     </div>
 </div>
 
