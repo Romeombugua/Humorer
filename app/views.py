@@ -13,7 +13,6 @@ from verify_email.email_handler import send_verification_email
 from django.conf import settings
 from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-import stripe
 def index(request):
     jokes = Jokes.objects.all()[:5]
     context = {
