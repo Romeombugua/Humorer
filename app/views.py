@@ -68,38 +68,14 @@ class StoryListView(generic.ListView):
         context['total_likes'] = total_likes
         return context
         '''
+
+
 def stories(request):
-    try:
-        # Retrieve the subscription & product
-        stories = Stories.objects.filter(status=1).order_by('-created_on')
-        stripe_customer = StripeCustomer.objects.get(user=request.user)
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        subscription = stripe.Subscription.retrieve(stripe_customer.stripeSubscriptionId)
-        #product = stripe.Product.retrieve(subscription.plan.product)
-
-        # Feel free to fetch any additional data from 'subscription' or 'product'
-        # https://stripe.com/docs/api/subscriptions/object
-        # https://stripe.com/docs/api/products/object
-
-        return render(request, 'stories.html', {
-            'stories':stories,
-            'subscription': subscription,
-        })
-
-    except StripeCustomer.DoesNotExist:
-        return render(request, 'subscribe.html')
-
-
-'''def stories(request):
     stories = Stories.objects.filter(status=1).order_by('-created_on')
-    stripe_customer = StripeCustomer.objects.get(user=request.user)
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-    subscription = stripe.Subscription.retrieve(stripe_customer.stripeSubscriptionId)
     context = {
         'stories':stories,
-        'subscription':subscription,
     } 
-    return render(request, 'stories.html', context=context)'''
+    return render(request, 'stories.html', context=context)
 
 
 def story_upload(request):
