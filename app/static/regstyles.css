@@ -9,13 +9,14 @@
   background: #2D2F36;
 }
 body {
-  background: black;
+  background: linear-gradient(212.38deg, rgba(242, 57, 127, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%),url(images/laugherpro.jpg);
   font-family: 'Inter UI', sans-serif;
   margin: 0;
   padding: 20px;
+  background-size: cover;
 }
 .page {
-  background: linear-gradient(212.38deg, rgba(242, 57, 127, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%),url(images/laugherpro.jpg);
+  /*background: linear-gradient(212.38deg, rgba(242, 57, 127, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%),url(images/laugherpro.jpg);*/
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -23,6 +24,7 @@ body {
   position: absolute;
   place-content: center;
   width: calc(100% - 40px);
+  opacity: 1;
 }
 @media (max-width: 767px) {
   .page {
