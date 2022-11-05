@@ -10,7 +10,6 @@
 }
 #error{
   margin-left: 30%;
-  color:red;
 }
 
 body {
@@ -64,6 +63,11 @@ body {
     left: 20px;
     width: calc(100% - 40px);
     max-height: 270px;
+  }
+}
+@media (max-width: 767px) {
+  #error {
+    margin-left: 20%;
   }
 }
 .login {
