@@ -146,7 +146,6 @@ body{
     text-align:center;
 }
 .cont{
-    border-radius: 50px;
     position:relative;
     z-index:2;
     background:rgba(248, 244, 4, 0.9);
