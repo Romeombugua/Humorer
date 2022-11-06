@@ -73,16 +73,16 @@ document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", 
 
 function myFunction() {
   var dots = document.getElementById("dots");
-  var moreText = document.getElementById("more");
+  var moreText = document.getElementById("dark");
   var btnText = document.getElementById("myBtn");
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "Read more"; 
+    btnText.innerHTML = "Show Dark"; 
     moreText.style.display = "none";
   } else {
     dots.style.display = "none";
-    btnText.innerHTML = "Read less"; 
+    btnText.innerHTML = "Hide Dark"; 
     moreText.style.display = "inline";
   }
 }

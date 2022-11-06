@@ -5,6 +5,20 @@
     #userstory {
         display: none;
         }
+    
+#change:link, #change:visited {
+  background-color: #7371f7;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+#change:hover, #change:active {
+  background-color: rgb(52, 20, 165);
+}
 </style>
 <script>
     function hider() {
@@ -17,7 +31,7 @@
         {% csrf_token %}
         <div class="media">
             <div class="media-body">
-                <a onclick="hider()">Stories by: {{ form.instance.username }}</a>
+                <!--<a onclick="hider()">Stories by: {{ form.instance.username }}</a>-->
                 <div id ='userstory'>
                 {% for story in stories %}
 
@@ -47,12 +61,12 @@
                 {{ form.email|as_crispy_field }}
                
 
-                <a href="{% url 'password_reset' %}">Change password?</a>
+                <a href="{% url 'password_reset' %}" >Change password?</a>
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Update</button>
             </div>
-            <li><a href="{% url 'logout'%}?next={% url 'index' %}">Logout</a></li>
+            <a href="{% url 'logout'%}?next={% url 'index' %}" id="change">Logout</a>
 
         {% endif %}
     </form>

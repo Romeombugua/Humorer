@@ -1,16 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+    #dark {
+        display: none;
+        }
+</style>
+<script>
+    function myFunction() {
+      var dots = document.getElementById("dots");
+      var moreText = document.getElementById("dark");
+      var btnText = document.getElementById("myBtn");
+    
+      if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Show Dark"; 
+        moreText.style.display = "none";
+      } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Hide Dark"; 
+        moreText.style.display = "inline";
+      }
+    }
+</script>
 <div id="home2" class="bgImage">
     <h1 class="head-main">CRACK A RIB</h1>
     <h2 class="head-sub-main">Dark humor, Memes, Vines, Funny stories all in one place</h2>
-    <h3 class="head-last">You can count on us to lighten up your day</h3>
-    <div class="homebtn"><div id="btnleft"><button href="#joke" >WHITE</button> </div>&nbsp;  <div id="btnright" ><a href=".cont2" >DARK</a></div></div>
+    <h3 class="head-last">You can count on us to lighten up your day &#128516</h3>
+    <div class="homebtn">  
+    <div  ><button type="button" class="btn btn-secondary btn-lg" onclick="myFunction()" id="myBtn">Show Dark</button></div></div>
 
 </div>
 </div>
 <div style="padding-top: 10%;" class="bgImage" >
 <div class = "cont">
-    <h3>Welcome {{ user.first_name }}</h3>
+    <h4>Welcome {{ user.first_name }}</h4>
     {% for joke in jokes %}
     <ul><li class = 'joke'><span>{{joke}}</span></li></ul>
     {% endfor %}
@@ -19,10 +42,13 @@
 </div>
 <div style="padding-top: 10%;" class="bgImage" >
 <div class="cont2">
+        <div style="text-align: center;"><span >Dark &#128128</span><br>
+        <span id="dots">...</span>
+        </div>
 
-{% for dark_joke in dark_jokes %}
-<ul><li class = 'joke'><span>{{dark_joke}}</span></li></ul>
-{% endfor %}
+        {% for dark_joke in dark_jokes %}
+        <ul><li class = 'joke' id="dark"><span>{{dark_joke}}</span></li></ul>
+        {% endfor %}
 
 </div> 
 

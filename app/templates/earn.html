@@ -1,5 +1,152 @@
-<form method="post" enctype="multipart/form-data">
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    {% block title %}<title>HUMORER</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/styles.css' %}">
+    <script type="text/javascript" src="{% static 'index.js' %}"></script>
+</head>
+<body>
+
+  <nav class="navbar sticky-top navbar-expand-lg bg-warning">
+    <div class="container">
+      <a href="{% url 'home' %}" class="nav-branding"><span id = 'dec'>HUMOR</span>ER</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <i class="fas fa-bars"></i>
+  </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto w-100 justify-content-end">
+          <li class="nav-item active">
+            <a href="{% url 'home' %}" class="nav-link">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'memes' %}" class="nav-link">Memes</a>
+            <li class="nav-item">
+              <a href="{% url 'shorts' %}" class="nav-link">Shorts</a>
+              <li class="nav-item">
+                <a href="{% url 'stories' %}" class="nav-link">Stories</a>
+                <li class="nav-item">
+                  <a href="{% url 'earn' %}" class="nav-link">Earn</a>
+                </li>
+                <li class="nav-item">
+                  {% if user.is_authenticated %}
+                  <a class="nav-item nav-link" href="{% url 'profile' user.username %}">
+                      {{user.username}} <i class="fas fa-user"></i>
+                  {% endif %}
+                  </a>
+                </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}
+  <style>
+    /*  body {
+          font-family: "Roboto", sans-serif;
+          font-size: 18px;
+          background-color: #fdfdfd;
+      }
+  
+      .head_text {
+          color: white;
+      }
+  
+      .card {
+          box-shadow: 0 16px 48px #E3E7EB;
+      }
+      #more {
+          display: none;
+          }*/
+  </style>
+  <script>
+      /*function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+      
+        if (dots.style.display === "none") {
+          dots.style.display = "inline";
+          btnText.innerHTML = "Read more"; 
+          moreText.style.display = "none";
+        } else {
+          dots.style.display = "none";
+          btnText.innerHTML = "Read less"; 
+          moreText.style.display = "inline";
+        }
+      }*/
+  </script>
+  
+  <!--<header class="masthead">
+      <div class="overlay"></div>
+      <div class="container">
+          <div class="row">
+              <div class=" col-md-8 col-md-10 mx-auto">
+                  <div class="site-heading">
+                     
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+  <div class="container">
+      <div class="row"> -->
+          <!-- Blog Entries Column -->
+          <!--<div class="col-md-8 mt-3 left">
+              {% for story in stories %}
+              <div class="card mb-4">
+                  <div class="card-body">
+                      <h2 class="card-title">{{ story.title }}</h2>
+                      <p class="card-text text-muted h6"><a href="{% url 'profile' story.user %}" >{{ story.user }}</a> | {{ story.created_on}} </p>
+                      <p class="card-text">{{story.content|slice:":100" }}<span id="dots">...</span> 
+                          <span id="more" >{{story.content|slice:"100:" }}</span>
+                          
+                      </p>
+                      
+                          {% if user.is_authenticated %}
+                          <form action="{% url 'like_post' %}" method="POST">
+                              {% csrf_token %}
+  
+                              <button type="submit" name="story_id" value="{{story.id}}" class="btn btn-prmary btn btn-sm">like</button>
+                          </form>
+                          {% else %}
+                          <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this article!</a><br>
+                          {% endif %}
+                          <strong class="text-secondary">{{ story.likes.count }} Like{{ story.likes.count|pluralize }}</strong>
+  
+                      
+                  </div>
+                  
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+  </div>-->
+  <h1>Time for lowkey comedians to make some cash &#128184. Unfortunately we are still coming up with the logic behind this page. We'll let you know once we are done</h1>
+  <!--<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Submit</button>
-</form>
+</form> -->
+  {%endblock%}
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>
+
