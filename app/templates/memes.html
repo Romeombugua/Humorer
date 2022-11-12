@@ -10,11 +10,11 @@
     
 
       {% for meme in memes %}
-      <div class="row">
+      <div class="row" >
 
-          <div class="column">
+          <div class="column" id="meme">
             <a target="_blank" href="{{ meme.image.url }}">
-              <img  class="img-fluid" src="{{ meme.image.url }}" alt="">
+              <img  class="img-fluid"  src="{{ meme.image.url }}" alt="">
             </a>
           </div>
       </div>

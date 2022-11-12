@@ -293,14 +293,15 @@ body{
 }
 
 /* memes page */
-.meme {
+#meme {
   border: 1px solid #ddd; /* Gray border */
   border-radius: 4px;  /* Rounded border */
   padding: 5px; /* Some padding */
+
 }
 
 /* Add a hover effect (blue shadow) */
-.meme:hover {
+#meme:hover {
   box-shadow: 0 0 2px 1px rgba(18, 18, 19, 0.5);
 }
 /* Three image containers (use 25% for four, and 50% for two, etc) */

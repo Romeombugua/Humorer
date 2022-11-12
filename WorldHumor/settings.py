@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
     'crispy_forms',
     'verify_email.apps.VerifyEmailConfig',
     'app.apps.AppConfig',

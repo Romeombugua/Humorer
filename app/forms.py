@@ -10,20 +10,18 @@ from app.models import Stories
 
 
 class RegisterForm(UserCreationForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField(label='email')
+    email = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'class':'form-control'}))
     
     class Meta:
         model = User
-        fields = ('first_name','last_name','username','email','password1','password2')
+        fields = ('username','email','password1','password2')
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['username', 'email']
 
 class StoryForm(forms.ModelForm):
     class Meta:
