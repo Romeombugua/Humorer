@@ -155,8 +155,5 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-#Stripe
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51LsXK0DHvzrAPfQgVa9bGT5S7h8BHljWVy4prvDmQqY39pv7nUh2tXj3Z3kWrEMa4IVbQrjF9IjFwKumPv3OnvuM00WPtW3FnZ'
-STRIPE_SECRET_KEY = 'sk_test_51LsXK0DHvzrAPfQgo3TkpFJKPe3mcSzUFAItlE4zXR8NKlI1nzXz4eYuVwCSrIAa5V0DI1sg5rgndX0u0mgfENi000cQhwOqkh'
-STRIPE_PRICE_ID = 'price_1LsXWVDHvzrAPfQgXhf7Bjih'
-STRIPE_ENDPOINT_SECRET = 'whsec_7d9f75c9c8d1beaa5207ce7cebc94d174046e2924895debab6e2561bea243616'
+#Login with email
+AUTHENTICATION_BACKENDS = ['app.backends.EmailBackend']

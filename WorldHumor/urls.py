@@ -20,6 +20,10 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('app/', include('app.urls')),
@@ -29,6 +33,7 @@ urlpatterns = [
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
+
 urlpatterns += [
     
 	path('verification/', include('verify_email.urls')),	
