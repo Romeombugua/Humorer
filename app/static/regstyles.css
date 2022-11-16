@@ -109,8 +109,20 @@ path {
   stroke-dasharray: 240 1386;
 }
 .form {
-  margin: 40px;
-  position: absolute;
+
+  position: relative;
+  width:auto ;
+  margin-left: 4%;
+  margin-top: 3%;
+}
+@media (max-width: 767px) {
+  .form {
+    
+    position: absolute;
+    width:auto ;
+    margin-left: 2%;
+    margin-top: 3%;
+  }
 }
 #label {
   color:  #c2c2c5;
@@ -120,16 +132,7 @@ path {
   margin-top: 20px;
   margin-bottom: 5px;
 }
-#input {
-  background: transparent;
-  border: 0;
-  color: #f2f2f2;
-  font-size: 20px;
-  height: 30px;
-  line-height: 30px;
-  outline: none !important;
-  width: 100%;
-}
+
 input::-moz-focus-inner { 
   border: 0; 
 }

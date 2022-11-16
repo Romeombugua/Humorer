@@ -11,7 +11,7 @@ from app.models import Stories
 
 
 class RegisterForm(UserCreationForm):
-    email = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(label='emaild', widget=forms.EmailInput(attrs={'class':'form-control'}))
     
     class Meta:
         model = User

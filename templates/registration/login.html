@@ -56,19 +56,21 @@
                   </defs>
                   <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
                 --></svg>
-                <div style="margin-left: 4%; margin-top: 3%;" class="form">
+                <div class="form">
 
-                  <form method="post" action="{% url 'login' %}">
+                  <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
                     {% csrf_token %}
                     
-                    
+                      <div class="form-group">
+                       
+
                         <span id="label">Username/Email:</span>
                         <span id="input">{{ form.username }}</span>
                       
                       
                         <span id="label">{{ form.password.label_tag }}</span>
                         <span id="input">{{ form.password }}</span>
-                      
+                      </div> 
                     <!--<input type="submit" id="submit" value="Let's Go">-->
                     <div class="form-group">
                       <button class="btn btn-outline-info" type="submit" id="submit" >Let's Go</button>
