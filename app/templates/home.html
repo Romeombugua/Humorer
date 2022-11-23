@@ -1,26 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-    #dark {
+    #myDIV {
         display: none;
         }
 </style>
 <script>
-    function myFunction() {
-      var dots = document.getElementById("dots");
-      var moreText = document.getElementById("dark");
-      var btnText = document.getElementById("myBtn");
-    
-      if (dots.style.display === "none") {
-        dots.style.display = "inline";
-        btnText.innerHTML = "Show Dark"; 
-        moreText.style.display = "none";
-      } else {
-        dots.style.display = "none";
-        btnText.innerHTML = "Hide Dark"; 
-        moreText.style.display = "inline";
-      }
-    }
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  var y = document.getElementById("myBtn")
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.innerHTML = "Hide Dark"
+  } else {
+    x.style.display = "none";
+    y.innerHTML = "Show Dark"
+  }
+}
 </script>
 <div id="home2" class="bgImage">
     <h1 class="head-main" style="color: yellow;">CRACK A RIB</h1>
@@ -41,17 +37,50 @@
 </div>
 </div>
 <div style="padding-top: 10%;" class="bgImage" >
-<div class="cont2">
-        <div style="text-align: center;"><span >Dark &#128128</span><br>
+<div class="cont2" >
+        <div  style="text-align: center;"><span >Dark &#128128</span><br>
         <span id="dots">...</span>
         </div>
-
+        <div id="myDIV">
         {% for dark_joke in dark_jokes %}
-        <ul><li class = 'joke' id="dark"><span>{{dark_joke}}</span></li></ul>
+        
+          <ul><li class = 'joke'><span>{{dark_joke}}</span></li></ul>
+        
         {% endfor %}
-
+        </div>
+        
 </div> 
 
 </div>
+<!-- Remove the container if you want to extend the Footer to full width. -->
+<div style="padding-top: 10%;" class="bgImage" id="footer">
+
+  <footer class="text-center text-lg-start" style="background-color: #423e3d;">
+    <div class="container d-flex justify-content-center py-5">
+      <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <i class="fab fa-youtube"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <i class="fab fa-instagram"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+        <i class="fab fa-twitter"></i>
+      </button>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2020 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  
+</div>
+<!-- End of .container -->
+
 
 {% endblock %}

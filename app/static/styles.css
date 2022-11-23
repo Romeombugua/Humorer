@@ -3,12 +3,8 @@
     color: rgb(15, 15, 15);
 
 }
-body, html{
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
+
+
 a {
     color: black;
 }
@@ -65,9 +61,6 @@ iframe {
 
 
 
-}
-#dark{
-  display: none;
 }
 
 .joke{
@@ -153,6 +146,7 @@ body{
     font-size:27px;
     color:rgb(15, 15, 15);
     padding:5%;
+    border-radius: 20px;
 }
 .cont2{
 
@@ -163,7 +157,8 @@ body{
   font-size:27px;
   color:rgb(15, 15, 15);
   padding:5%;
-  display: none;
+  border-radius: 20px;
+  
 
 }
 
@@ -315,10 +310,4 @@ body{
   clear: both;
   display: table;
 }
-#footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 60px;   /* Height of the footer */
-  background: #6cf;
-}
+
