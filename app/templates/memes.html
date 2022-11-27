@@ -5,7 +5,7 @@
     </h1></div>
 
     {% if memes %}
-    <div style="padding-top: 10%;" class="bgImage" >
+    <div style="padding-top: 10%; width:100vw" class="bgImage" >
       <div class="cont">
     
 
@@ -14,7 +14,7 @@
 
           <div class="column" id="meme">
             <a target="_blank" href="{{ meme.image.url }}">
-              <img  class="img-responsive"  src="{{ meme.image.url }}" alt="">
+              <img style="width: 100%;" class="img-responsive"  src="{{ meme.image.url }}" alt="">
             </a>
           </div>
       </div>
