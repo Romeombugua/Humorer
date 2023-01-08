@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'storages',
     'crispy_forms',
     'verify_email.apps.VerifyEmailConfig',
     'app.apps.AppConfig',
@@ -180,3 +181,13 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
+if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    AWS_S3_REGION_NAME = os.environ['AWS_S3_REGION_NAME']
+
+    AWS_S3_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_S3_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
