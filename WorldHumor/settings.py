@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-4!h(6d+2%x2(w921109weady%ciov&&qro(-141y*co8o5fj+x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['humorer.herokuapp.com','127.0.0.1','localhost','Humorer-dev.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['humorer.herokuapp.com','127.0.0.1','localhost','Humorer-dev.us-west-2.elasticbeanstalk.com','172.31.35.231']
 
 
 # Application definition
