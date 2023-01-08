@@ -1,28 +1,32 @@
 {% extends "base.html" %}
     {% block content %}
-
+    <div id="home2" class="bgImage" >
+      <h1 class="container-md " style="text-align: center; color: yellow;margin: 10%;">Laughter will always be the best medicine. Have you had your shot today?<i class="fas fa-laugh    "></i>
+    </div>
 
     {% if shorts %}
-    <div style="padding-top: 10%;" class="bgImage" >
-      <div class="cont">
-    
+    <div class="container-sm border" style="border-radius: 20px;text-align: center;">
+      <span style="background-color: black; color: yellow; border-radius: 0px 0px 10px 10px;">Editor's Choice</span>
+      <h1>10 funny videos to start your day!</h1>
 
       {% for short in shorts %}
-      <div>
+      <div style="margin-top: 0%;">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe style="border-radius:20px ;" class="embed-responsive-item" src="{{ short.video }}" allowfullscreen></iframe>
+          <iframe style="border-radius:20px; height: 80%;" class="embed-responsive-item" src="{{ short.video }}" allowfullscreen></iframe>
         </div>
       </div>
       {% endfor %}
 
-      
-      </div>
     {% else %}
       <p>There are no shorts in the database.</p>
-    {% endif %}  
+    {% endif %}
+    </div>  
+    <div class="bgImage" style="text-align: center; margin-top: 5%;">
+      <h3 class="quote"><q>A good laugh is a mighty good thing,<br>
+       a rather too scarce <br>
+       a good thing
+      </q></h3>
+      <h5 class="quote">~ Herman Melville</h5>
     </div>    
     {% endblock %}
- 
-</body>
-</html>
-  
+   

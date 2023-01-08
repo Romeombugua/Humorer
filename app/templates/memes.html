@@ -1,30 +1,34 @@
 {% extends "base.html" %}
     {% block content %}
-    <div id="home2" class="bgImage"><h1 class="head-sub-main">A day without memes is full of stress, depression and hypertension which ultimately
-      leads to photosynthesis
-    </h1></div>
+    <div id="home2" class="bgImage" >
+      <h1 class="container-md " style="text-align: center; color: yellow; margin: 10%;">A day without memes is full of stress, depression and hypertension. Laugh to live! <i class="fas fa-laugh    "></i>
+    </div>
 
     {% if memes %}
-    <div style="padding-top: 10%; width:100vw" class="bgImage" >
-      <div class="cont">
-    
+    <div class="container-sm border" style="border-radius: 20px;text-align: center;">
+      <span style="background-color: black; color: yellow; border-radius: 0px 0px 10px 10px;">Editor's Choice</span>
+      <h1>10 funny memes to start your day!</h1>
 
       {% for meme in memes %}
-      <div class="row" >
+      <div style="padding-top: 10%; max-width: inherit;"  >
 
-          <div class="column" id="meme">
-            <a target="_blank" href="{{ meme.image.url }}">
-              <img style="width: 100%;" class="img-responsive"  src="{{ meme.image.url }}" alt="">
+            <a target="_blank" href="{{ meme.image.url }}" class="text-center">
+              <img class="img-fluid" style="border-radius: 20px; height: 80%;" src="{{ meme.image.url }}" alt="" >
             </a>
-          </div>
+          
       </div>
       {% endfor %}
-
-      </div>
 
     {% else %}
       <p>There are no memes in the database.</p>
     {% endif %}
-      </div>      
+    </div>  
+    <div class="bgImage" style="text-align: center; margin-top: 5%;">
+      <h3 class="quote"><q>There's nothing in the<br>
+       world so irresistibly <br>
+       contagious as laughter
+      </q></h3>
+      <h5 class="quote">~ Charles Dickens</h5>
+    </div>    
     {% endblock %}
    

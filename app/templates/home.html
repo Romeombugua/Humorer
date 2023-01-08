@@ -1,9 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 <style>
     #myDIV {
         display: none;
         }
+
 </style>
 <script>
 function myFunction() {
@@ -19,32 +21,40 @@ function myFunction() {
 }
 </script>
 <div id="home2" class="bgImage">
-    <h1 class="head-main" style="color: yellow;">CRACK A RIB</h1>
-    <h2 class="head-sub-main" style="color: yellow;">Dark humor, Memes, Vines, Funny stories all in one place</h2>
-    <h3 class="head-last" style="color: yellow;">You can count on us to lighten up your day &#128516</h3>
-    <div class="homebtn">  
+  <div style="padding-top: 3%;">
+    <h1 class="head-main" style="color: yellow;text-align: center;">CRACK A RIB</h1>
+    <h2 class="head-sub-main" style="color: yellow;text-align: center;">Dark humor, Memes, Vines, Funny stories all in one place</h2>
+    <h3 class="head-last" style="color: yellow;text-align: center;">You can count on us to lighten up your day &#128516</h3>
+  </div>
+    <div class="homebtn" style="display: block; justify-content: center; text-align: center; padding-bottom: 5%; padding-top: 3%;">  
     <div  ><button type="button" class="btn btn-secondary btn-lg" onclick="myFunction()" id="myBtn">Show Dark</button></div></div>
-
 </div>
 </div>
-<div style="padding-top: 10%;" class="bgImage" >
-<div class = "cont">
-    <h4>Welcome {{ user.username }}</h4>
+<span style="background-color: black; color: yellow; border-radius: 0px 0px 10px 0px;">Editor's Choice</span>
+<div style="padding-top: 2%;" > 
+<div class="container-md border" style="text-align: center; border-radius: 20px;">
+    <!--<h4>Welcome {{ user.username }}</h4>-->
+    <h1>10 funny jokes for some Serotonin activation &#128513</h1>
+    <hr>
     {% for joke in jokes %}
-    <ul><li class = 'joke'><span>{{joke}}</span></li></ul>
+    <ul style="list-style-type: none;"><li class = 'joke'><span>&#128517 {{joke}}</span></li></ul>
     {% endfor %}
 
 </div>
 </div>
-<div style="padding-top: 10%;" class="bgImage" >
-<div class="cont2" >
+<hr>
+<div style="padding-top: 0%;">
+<div class="container-md border" style="border-radius: 20px;">
         <div  style="text-align: center;"><span >Dark &#128128</span><br>
         <span id="dots">...</span>
         </div>
-        <div id="myDIV">
+        
+        <div id="myDIV" style="text-align: center;">
+          <h1>10 dark jokes to test how morbid your sense of how is!</h1>
+          <hr>
         {% for dark_joke in dark_jokes %}
         
-          <ul><li class = 'joke'><span>{{dark_joke}}</span></li></ul>
+          <ul style="list-style-type: none;"><li class = 'joke'><span>&#128128 {{dark_joke}}</span></li></ul>
         
         {% endfor %}
         </div>
@@ -52,5 +62,13 @@ function myFunction() {
 </div> 
 
 </div>
+<div class="bgImage" style="text-align: center; margin-top: 5%;">
+  <h3 class="quote"><q>At the height of laughter,<br>
+   the universe is flung into a kaleidoscope of <br>
+   new possibilities
+  </q></h3>
+  <h5 class="quote">~ Jean Houston</h5>
+</div>
+
 
 {% endblock %}

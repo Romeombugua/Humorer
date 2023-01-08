@@ -23,8 +23,8 @@ def index(request):
 
 @login_required
 def home(request):
-    jokes = Jokes.objects.all()[:10]
-    dark_jokes = DarkJokes.objects.all()
+    jokes = Jokes.objects.all()[5:15]
+    dark_jokes = DarkJokes.objects.all()[:10]
     context = {
         'jokes':jokes,
         'dark_jokes':dark_jokes
@@ -33,14 +33,14 @@ def home(request):
     return render(request, 'home.html', context = context)
 
 def meme(request):
-    memes = Memes.objects.all()
+    memes = Memes.objects.all()[:10]
     context = {
         'memes':memes
     }
     return render(request, 'memes.html', context=context)
 
 def shorts(request):
-    shorts = Shorts.objects.all()
+    shorts = Shorts.objects.all()[:10]
     context = {
         'shorts':shorts
     }

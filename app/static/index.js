@@ -32,6 +32,40 @@ window.onload = function () {
     setInterval(change, 5000);
 };*/
 /* Landing page */
+
+$(function() {
+  $(window).scroll(function() {
+      var totalHeight, currentScroll, visibleHeight;        
+        // How far we've scrolled
+      currentScroll = $(document).scrollTop();
+        // Height of page
+      totalHeight = document.body.offsetHeight;
+        // Height visible
+      visibleHeight = document.documentElement.clientHeight;
+        // If visible + scrolled is greater or equal to total
+        //   we're at the bottom
+      if (visibleHeight + currentScroll >= totalHeight) {
+            // Add to top link if it's not there
+          if ($("#toTop").length === 0) {
+              var toTop = $("<a>");
+              toTop.attr("id", "toTop");
+              toTop.attr("href", "#");
+              toTop.css("display", "none");
+              toTop.html("You're Done! Scroll to Top of Page");
+                // Bind scroll to top of page functionality
+              toTop.click(function() {
+                  $('html, body').animate({scrollTop:0}, 'slow', function() {
+                      $("#toTop").remove();
+                  });
+                  return false;
+              });
+              $("body").append(toTop);
+              $("#toTop").fadeIn(3000);
+          }
+      }
+  });
+});
+
 $( document ).ready(function() {
     var $window = $(window);
     function scroll_elements(){
