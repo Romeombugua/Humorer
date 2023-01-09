@@ -24,7 +24,7 @@ class Jokes(models.Model):
 class Memes(models.Model):
     name = models.CharField(max_length=50, help_text="upload a meme")
     image = models.ImageField(upload_to = 'uploads/memes', blank=False, default='memes/download.jpg')
-    category= models.ForeignKey(Category,on_delete=models.CASCADE,default=1 )
+    category= models.ForeignKey(Category,on_delete=models.CASCADE,blank=True, default=1 )
 
     def __str__(self):
         return self.name
