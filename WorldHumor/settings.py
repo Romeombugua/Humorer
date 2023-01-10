@@ -162,6 +162,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #Login with email
 AUTHENTICATION_BACKENDS = ['app.backends.EmailBackend']
+SECURE_CROSS_ORIGIN_OPENER_POLICY=None
 
 if 'RDS_DB_NAME' in os.environ:
     DATABASES = {
