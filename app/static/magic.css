@@ -5,7 +5,7 @@
     background-attachment: fixed;
     overflow: hidden;
     position: relative;
-    background-image: url(images/laugher1.jpg);
+    background-image: url(/images/laugher1.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,17 +16,17 @@
 @keyframes change{
     0%
     {
-        background-image: url(images/laugher1.jpg);
+        background-image: url(/images/laugher1.jpg);
     }
 
     20%
     {
-        background-image: url(images/laugherpro.jpg);
+        background-image: url(/images/laugherpro.jpg);
     }
 
     40%
     {
-        background-image: url(images/laugherultra.jpg);
+        background-image: url(/images/laugherultra.jpg);
     }
 
 
