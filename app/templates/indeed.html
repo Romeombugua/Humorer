@@ -114,36 +114,22 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 </html>
-.bgImage{
-  width: 100%;
-  height: auto;
-  background-attachment: fixed;
-  overflow: hidden;
-  position: relative;
-  background-image: url(/images/laugher1.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  justify-content: center;
-  animation: change 10s infinite ease-in-out;
-  align-content: center;
-}
-@keyframes change{
-  0%
-  {
-      background-image: url(/images/laugher1.jpg);
-  }
 
-  20%
-  {
-      background-image: url(/images/laugherpro.jpg);
-  }
+<div class="container-sm" class="shadow p-4 mb-5 bg-body rounded" style="background-color: yellow; align-content: center;">
+  <h1 class="text-center">Join the community</h1>
 
-  40%
-  {
-      background-image: url(/images/laugherultra.jpg);
-  }
-
-
-
-}
+  <form method="post" >
+    {% csrf_token %}
+    <div  class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        {{ form|crispy }}
+      </div>					
+    </div>
+    
+    <br>
+    <div class="text-center">
+      <input class="btn btn-secondary" type="submit" name="submit" value="Register">
+      </div>
+    
+  </form>
+</div>

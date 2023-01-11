@@ -26,7 +26,7 @@
       userstory.style.display = "inline";
     }
 </script>
-<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+<div class="container-md" style="min-height:65vh; align-content: center;">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="media">
@@ -55,7 +55,12 @@
                         {{ form.username|as_crispy_field }}
                     </div>
                 </div> 
-                {{ form.email|as_crispy_field }}
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+                </div>
+                
                
 
                 <a href="{% url 'password_reset' %}" >Change password?</a>

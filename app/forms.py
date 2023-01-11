@@ -17,6 +17,7 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ('username','email','password1','password2')
 
+
 class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
