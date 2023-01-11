@@ -1,33 +1,4 @@
-.bgImage{
-    width: 100%;
-    height: auto;
-    background-attachment: fixed;
-    overflow: hidden;
-    position: relative;
-    background-image: url(/image/download/uploads/bg/laugher1.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    justify-content: center;
-    animation: change 10s infinite ease-in-out;
-    align-content: center;
-  }
-  @keyframes change{
-    0%
-    {
-        background-image: url(/image/download/uploads/bg/laugher1.jpg);
-    }
-  
-    20%
-    {
-        background-image: url(/image/download/uploads/bg/laugherpro.jpg);
-    }
-  
-    40%
-    {
-        background-image: url(/image/download/uploads/bg/laugherultra.jpg);
-    }
-  }
+
 .quote {
     font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(to right,#020024,
