@@ -134,7 +134,7 @@ def register(request):
             inactive_user = send_verification_email(request, form)
             messages.success(request, 'We have sent an account activation link to your email. Please check your inbox or spam')
             #form.save()
-            return redirect('home')
+            return redirect('register')
         return render(request, "register.html", {"form":form})
     else:
         form = RegisterForm()
