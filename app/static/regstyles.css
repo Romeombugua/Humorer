@@ -13,32 +13,41 @@
   color: red;
 }
 
-body {
-  background-color: linear-gradient(212.38deg, rgba(242, 57, 127, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%);
-  font-family: 'Inter UI', sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-size: cover;
+/*body {
+  
+  
   background-repeat: no-repeat;
+  object-fit: cover;
+}*/
+body {
+  font-family: 'Inter UI', sans-serif;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
 }
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 .page {
-  /*background: linear-gradient(212.38deg, rgba(242, 57, 127, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%),url(images/laugherpro.jpg);*/
-  background-size: cover;
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
   position: absolute;
   place-content: center;
   width: calc(100% - 40px);
-  opacity: 1;
 }
-@media (max-width: 767px) {
-  .page {
-    height: auto;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-  }
-}
+
 .container {
   display: flex;
   height: 320px;
@@ -139,7 +148,7 @@ input::-moz-focus-inner {
 }
 #submit {
   color: #707075;
-  margin-top: 40px;
+  margin-top: 20px;
   transition: color 300ms;
 }
 #submit:focus {

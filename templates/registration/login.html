@@ -7,17 +7,30 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Humorer</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         {% load static %}
-        <link rel="stylesheet" href="{% static '/regstyles.css' %}">
+        <link rel="stylesheet" href="{% static 'regstyles.css' %}">
         <script type="text/javascript" src="{% static 'index.js' %}"></script>
+          <script type="text/javascript">
+              function reveal()
+              {
+              if(document.getElementById('box').checked)
+                {document.getElementById("id_password").type='text';}
+              else{
+                document.getElementById("id_password").type='password';
+              }
+              
+              }
+          </script>   
+
+
     </head>
-    <body style="background-image: url(/image/download/uploads/bg/laugherpro.jpg);">
+    <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -70,16 +83,21 @@
                       
                         <span id="label">{{ form.password.label_tag }}</span>
                         <span id="input">{{ form.password }}</span>
+                        <div>
+                          <input type="checkbox" id="box" onclick ="reveal()" style="display: inline;"> <h6 style="display: inline; font-size: small;">Show password</h6>
+                        </div>
                       </div> 
                     <!--<input type="submit" id="submit" value="Let's Go">-->
                     <div class="form-group">
                       <button class="btn btn-outline-info" type="submit" id="submit" >Let's Go</button>
                     </div>
                     <input type="hidden" name="next" value="{{ next }}">
+                    <a href="{% url 'register' %}">create account</a>
+                    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                       
                   </form>
                   {# Assumes you setup the password_reset view in your URLconf #}
-                  <a href="{% url 'register' %}">create account</a>
-                  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
                 </div>
               </div>
             </div>
