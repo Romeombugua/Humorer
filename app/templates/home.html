@@ -27,24 +27,31 @@ function myFunction() {
     <h3 class="head-last" style="color: yellow;text-align: center;">You can count on us to lighten up your day &#128516</h3>
   </div>
     <div class="homebtn" style="display: block; justify-content: center; text-align: center; padding-bottom: 5%; padding-top: 3%;">  
-    <div  ><button type="button" class="btn btn-secondary btn-lg" onclick="myFunction()" id="myBtn">Show Dark</button></div></div>
+    <div  ><button type="button" class="btn btn-secondary btn-lg" onclick="myFunction()" id="myBtn">Show Dark</button></div>
+  </div>
 </div>
 </div>
-<span style="background-color: black; color: yellow; border-radius: 0px 0px 10px 0px; text-align: center;">Editor's Choice</span>
+<div style="text-align: center;">
+  <span style="background-color: black; color: yellow; border-radius: 0px 0px 10px 10px;">Editor's Choice</span>
+</div>
+
 <div style="padding-top: 2%;" > 
-<div class="container-md border" style="text-align: center; border-radius: 20px;">
+<div class="container-md" style="text-align: center;">
     <!--<h4>Welcome {{ user.username }}</h4>-->
     <h1>10 funny jokes for some Serotonin activation &#128513</h1>
     <hr>
     {% for joke in jokes %}
-    <ul style="list-style-type: none;"><li class = 'container-sm border' style="border-radius: 20px; box-shadow: 5px 5px 5px gray; padding: 5%;"><span>&#128517 {{joke}}</span></li></ul>
+    <div class = 'container-sm border' style="border-radius: 20px; box-shadow: 5px 5px 5px gray; padding: 5%; margin: 2%;">
+      <ul style="list-style-type: none;"><li>&#128517 {{joke}}</li></ul>
+    </div>
+    
     {% endfor %}
 
 </div>
 </div>
 <hr>
 <div style="padding-top: 0%;">
-<div class="container-md border" style="border-radius: 20px;">
+<div class="container-md">
         <div  style="text-align: center;"><span >Dark &#128128</span><br>
         <span id="dots">...</span>
         </div>
