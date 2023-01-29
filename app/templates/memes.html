@@ -10,10 +10,10 @@
       <h1>10 funny memes to start your day!</h1>
 
       {% for meme in memes %}
-      <div style="padding-top: 10%; max-width: inherit;"  >
+      <div style="padding-top: 10%; max-width: inherit; "  >
 
             <a target="_blank" href="{{ meme.image.url }}" class="text-center">
-              <img class="img-fluid" style="border-radius: 20px; height: 80%;" src="{{ meme.image.url }}" alt="" >
+              <img class="img-fluid" style="border-radius: 10px; max-height: 50%; border: 2px solid black; max-width: 50%;" src="{{ meme.image.url }}" alt="" >
             </a>
             
           

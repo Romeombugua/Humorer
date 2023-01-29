@@ -46,27 +46,8 @@ def shorts(request):
     }
     return render(request, 'shorts.html', context=context)
 
-'''def StoryDetail(request):
-    story = Stories.objects.filter(status=1).order_by('-created_on')
-    provider = get_object_or_404(Stories,id=request.POST.get('story_id'))
-    total_likes = provider.total_likes()
-    context = {
-        'story':story,
-        'total_likes':total_likes
-    }
-    return render(request, '/app/stories_detail.html', context=context)
-'''
-
 class StoryListView(generic.ListView):
     queryset = Stories.objects.filter(status=1).order_by('-created_on')
-
-    '''def get_context_data(self,*args, **kwargs):
-        context = super(StoryListView,self).get_context_data(*args,**kwargs)
-        provider = get_object_or_404(Stories, id=self.kwargs.get('pk'))
-        total_likes = provider.total_likes()
-        context['total_likes'] = total_likes
-        return context
-        '''
 
 
 def stories(request):
@@ -106,27 +87,6 @@ def LikeView(request):
 
     return HttpResponseRedirect(reverse('stories'))
 
-'''def LikeView(request):
-    user_id = request.user.id
-    story_id = request.POST.get('story_id')
-    story = Stories.objects.get(id=story_id)
-
-    like_filter = LikePost.objects.filter(story_id=story_id,user_id=user_id).first()
-
-    if like_filter == None:
-        new_like = LikePost.objects.create(story_id=story_id, user_id=user_id)
-        new_like.save()
-        story.likes = story.likes+1
-        story.save()
-        return HttpResponseRedirect(reverse('stories'))
-    else:
-        like_filter.delete()
-        story.likes = story.likes-1
-        story.save()
-        return HttpResponseRedirect(reverse('stories'))'''
-
-
-
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -140,21 +100,6 @@ def register(request):
         form = RegisterForm()
 
         return render(request, "register.html", {"form":form})
-
-
-'''def register(request):
-	if request.method == "POST":
-		form = RegisterForm(request.POST)
-		if form.is_valid():
-			inactive_user = send_verification_email(request, form)
-			messages.success(request, "Registration successful." )
-			return redirect('home')
-		messages.error(request, "Unsuccessful registration. Invalid information.")
-	form = RegisterForm()
-	return render(request, "register.html", {"form":form})'''
-
-
-
 
 def profile(request, username):
     if request.method == 'POST':
