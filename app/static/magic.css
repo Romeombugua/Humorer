@@ -31,3 +31,19 @@
     justify-content: center;
     display: block;
 }
+
+#meme{
+    border-radius: 10px; 
+    max-height: 50%; 
+    border: 2px solid black; 
+    max-width: 50%;
+}
+
+@media (max-width: 767px) {
+    #meme{
+        max-width: 80%;
+        border-radius: 10px;
+        border: 2px solid black;
+      
+    }
+  }
