@@ -10,9 +10,15 @@
       <h1>10 funny videos to start your day!</h1>
 
       {% for short in shorts %}
-      <div style="margin-top: 0%;">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe id="video" style="border-radius:20px; height: 80%;" class="embed-responsive-item" src="{{ short.video }}" allowfullscreen></iframe>
+      <div style="margin: 0%;">
+        <div class="embed-responsive embed-responsive-16by9"  style="box-shadow: 5px 5px 5px gray; border-radius: 10px; margin-bottom: 5%;">
+          <div>
+            <video style="border-radius:0px; height: 80%; padding: 0%;" class="embed-responsive-item"  controls>
+              <source src="{{ short.video.url }}">
+            </video>
+            <a id="source" href="{{short.source}}" class="btn btn-outline-info" style="margin-bottom: 5%;">Source</a>
+          </div>
+          <!--<iframe id="video" style="border-radius:20px; height: 80%;" class="embed-responsive-item" src="{{ short.video.url }}" allowfullscreen></iframe>-->
         </div>
       </div>
       {% endfor %}

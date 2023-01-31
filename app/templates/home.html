@@ -41,7 +41,7 @@ function myFunction() {
     <h1>10 funny jokes for some Serotonin activation &#128513</h1>
     <hr>
     {% for joke in jokes %}
-    <div class = 'container-sm border' style="border-radius: 20px; box-shadow: 5px 5px 5px gray; padding: 5%; margin: 2%;">
+    <div class = 'container-sm border' style="border-radius: 10px; box-shadow: 5px 5px 5px gray; padding: 5%; margin-bottom: 2%;">
       <ul style="list-style-type: none;"><li>&#128517 {{joke}}</li></ul>
     </div>
     
@@ -60,9 +60,9 @@ function myFunction() {
           <h1>10 dark jokes to test how morbid your sense of how is!</h1>
           <hr>
         {% for dark_joke in dark_jokes %}
-        
-          <ul style="list-style-type: none;"><li class = 'container-sm border' style="border-radius: 20px; box-shadow: 5px 5px 5px gray; padding: 5%;"><span>&#128128 {{dark_joke}}</span></li></ul>
-        
+        <div class = 'container-sm border' style="border-radius: 10px; box-shadow: 5px 5px 5px gray; padding: 5%; margin-bottom: 2%;">
+          <ul style="list-style-type: none;"><li>&#128128 {{dark_joke}}</li></ul>
+        </div>
         {% endfor %}
         </div>
         

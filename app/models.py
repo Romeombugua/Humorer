@@ -72,7 +72,8 @@ class LikePost(models.Model):
 
 class Shorts(models.Model):
     name = models.CharField(max_length=50, help_text="upload a short")
-    video = models.CharField(max_length=1000 ,blank=False)
+    video = models.FileField(upload_to = 'uploads/shorts', blank=False, default='shorts/download.mp4')
+    source = models.CharField(max_length=255, default='#')
     def __str__(self):
         return self.name
 
