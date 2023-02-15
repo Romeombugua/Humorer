@@ -5,6 +5,11 @@ from time import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
+from moviepy.editor import VideoFileClip
+from django.conf import settings
+import os
+import uuid
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -76,6 +81,19 @@ class Shorts(models.Model):
     source = models.CharField(max_length=255, default='#')
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        # Cut video in to sub clip and store them using python moviepy
+        input_video = VideoFileClip(self.video.path)
+        path = self.video.path
+        sep = os.path.sep
+        new_name = f'{settings.BASE_DIR}{sep}uploads{sep}shorts{os.path.sep}{uuid.uuid4()}.mp4'
+        end_time = input_video.duration - 4
+        ffmpeg_extract_subclip(self.video.path, 0, end_time, targetname=new_name)
+        self.video.name = new_name
+        input_video.close()
+        super().save(*args, **kwargs)
 
 
 class StripeCustomer(models.Model):

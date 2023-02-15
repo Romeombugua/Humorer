@@ -31,18 +31,18 @@
     <!-- ***** Main Banner Area Start ***** -->
     <div class="main-banner" id="top">
         <video autoplay muted loop id="bg-video">
-            <source src= "{% static '/images/video1.mp4' %}" type="video/mp4" />
+            <source src= "/uploads/bg/video1.mp4" type="video/mp4" />
         </video>
 
         <div class="video-overlay header-text">
             <div class="caption">
                 {% block content %}
-                <h4 id = 'heading' style="font-weight: 700;">5 OF THE FUNNIEST JOKES EVER TOLD</h4>
+                  <h4 id = 'heading' style="font-weight: 700;">5 OF THE FUNNIEST JOKES EVER TOLD</h4>
                 {% for joke in jokes %}
                   <ul><li class="container-sm border" style="font-weight: 700; border-radius: 10px; margin: 2%; padding: 1%; color: yellow;"><span>{{joke}}</span></li></ul>
                 {% endfor %}
                 {% endblock %}
-                <a href="{% url 'home' %}" class="btn btn-outline-info" role="button">View More</a>
+                  <a href="{% url 'home' %}" class="btn btn-outline-info" role="button">View More</a>
             </div>
         </div>
     </div>

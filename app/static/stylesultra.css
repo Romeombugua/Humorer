@@ -20,40 +20,6 @@ iframe {
   position: absolute;
   opacity: 0;
 }
-.bgImage{
-    width: 100%;
-    height: auto;
-    background-attachment: fixed;
-    overflow: hidden;
-    position: relative;
-    background-image: url(images/laugher1.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    justify-content: center;
-    animation: change 10s infinite ease-in-out;
-    align-content: center;
-}
-
-@keyframes change{
-    0%
-    {
-        background-image: url(images/laugher1.jpg);
-    }
-
-    20%
-    {
-        background-image: url(images/laugherpro.jpg);
-    }
-
-    40%
-    {
-        background-image: url(images/laugherultra.jpg);
-    }
-
-
-
-}
 
 .joke{
     font-family: Florence, cursive;
