@@ -51,7 +51,7 @@
             }
 
             form {
-                background-image: url(/uploads/bg/login.jpg);
+                background-image: url(/media/bg/login.jpg);
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -126,7 +126,7 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <h1><span style="color: yellow;">Log</span>in</h1>
+        <h1><span style="color: yellow;">Log</span>.in</h1>
             <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
                 {% csrf_token %}
                 <div class="form-group">
@@ -145,7 +145,7 @@
                 </div>
                 <input type="hidden" name="next" value="{{ next }}">
                 <a href="{% url 'register' %}" style="font-weight: 900;">create account</a>
-                <p><a href="{% url 'password_reset' %}" style="font-weight: 900;">Lost password?</a></p>
+                <p><a href="{% url 'password_reset' %}" style="font-weight: 900;">lost password?</a></p>
             </form>
         <script src="" async defer></script>
     </body>

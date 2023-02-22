@@ -19,6 +19,7 @@ class Category(models.Model):
 
 class Jokes(models.Model):
     joke = models.TextField(help_text='Enter a joke')
+    likes = models.ManyToManyField(User, related_name='joke_posts')
  
     category= models.ForeignKey(Category,on_delete=models.CASCADE,default=1 )
     
@@ -28,14 +29,16 @@ class Jokes(models.Model):
 
 class Memes(models.Model):
     name = models.CharField(max_length=50, help_text="upload a meme")
-    image = models.ImageField(upload_to = 'uploads/memes', blank=False, default='memes/download.jpg')
+    image = models.ImageField(upload_to = 'media/memes', blank=False, default='memes/download.jpg')
     category= models.ForeignKey(Category,on_delete=models.CASCADE,blank=True, default=1 )
+    likes = models.ManyToManyField(User, related_name='meme_posts')
 
     def __str__(self):
         return self.name
 
 class DarkJokes(models.Model):
     dark_joke = models.TextField(help_text='Enter a dark joke')
+    likes = models.ManyToManyField(User, related_name='dark_posts')
 
     category= models.ForeignKey(Category,on_delete=models.CASCADE,default=1 )
 
@@ -54,7 +57,7 @@ class Stories(models.Model):
                         on_delete = models.SET_NULL
                         )
     title = models.CharField(max_length = 100)
-    image = models.ImageField(upload_to = 'uploads/memes', blank=False, default='memes/download.jpg')
+    image = models.ImageField(upload_to = 'media/memes', blank=False, default='memes/download.jpg')
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
@@ -71,14 +74,12 @@ class Stories(models.Model):
     def get_absolute_url(self):
         return reverse('stories', kwargs={'pk': self.pk})
 
-class LikePost(models.Model):
-    story = models.ForeignKey(Stories,on_delete=models.CASCADE, null=True)
-    user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
 
 class Shorts(models.Model):
     name = models.CharField(max_length=50, help_text="upload a short")
-    video = models.FileField(upload_to = 'uploads/shorts', blank=False, default='shorts/download.mp4')
+    video = models.FileField(upload_to = 'media/shorts', blank=False, default='shorts/download.mp4')
     source = models.CharField(max_length=255, default='#')
+    likes = models.ManyToManyField(User, related_name='short_posts')
     def __str__(self):
         return self.name
 
@@ -88,12 +89,20 @@ class Shorts(models.Model):
         input_video = VideoFileClip(self.video.path)
         path = self.video.path
         sep = os.path.sep
-        new_name = f'{settings.BASE_DIR}{sep}uploads{sep}shorts{os.path.sep}{uuid.uuid4()}.mp4'
+        new_name = f'{settings.BASE_DIR}{sep}media{sep}shorts{os.path.sep}{uuid.uuid4()}.mp4'
         end_time = input_video.duration - 4
         ffmpeg_extract_subclip(self.video.path, 0, end_time, targetname=new_name)
         self.video.name = new_name
         input_video.close()
         super().save(*args, **kwargs)
+
+class LikePost(models.Model):
+    story = models.ForeignKey(Stories,on_delete=models.CASCADE, null=True)
+    short = models.ForeignKey(Shorts,on_delete=models.CASCADE, null=True)
+    meme = models.ForeignKey(Memes,on_delete=models.CASCADE, null=True)
+    joke = models.ForeignKey(Jokes,on_delete=models.CASCADE, null=True)
+    dark_joke = models.ForeignKey(DarkJokes,on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
 
 
 class StripeCustomer(models.Model):

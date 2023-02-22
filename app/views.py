@@ -80,12 +80,68 @@ def story_upload(request):
     
 def LikeView(request):
     story = get_object_or_404(Stories, id=request.POST.get('story_id'))
+   
     if story.likes.filter(id=request.user.id).exists():
         story.likes.remove(request.user)
     else:
         story.likes.add(request.user)
 
+
+        
+
     return HttpResponseRedirect(reverse('stories'))
+
+
+def LikeMeme(request):
+    meme = get_object_or_404(Memes, id=request.POST.get('meme_id'))
+
+    if meme.likes.filter(id=request.user.id).exists():
+        meme.likes.remove(request.user)
+    else:
+        meme.likes.add(request.user)
+    
+    return HttpResponseRedirect(reverse('memes'))
+
+
+def LikeWhite(request):
+    joke = get_object_or_404(Jokes, id=request.POST.get('joke_id'))
+   
+    if joke.likes.filter(id=request.user.id).exists():
+        joke.likes.remove(request.user)
+    else:
+        joke.likes.add(request.user)
+
+
+        
+
+    return HttpResponseRedirect(reverse('home'))
+
+
+def LikeDark(request):
+    dark = get_object_or_404(DarkJokes, id=request.POST.get('dark_joke_id'))
+   
+    if dark.likes.filter(id=request.user.id).exists():
+        dark.likes.remove(request.user)
+    else:
+        dark.likes.add(request.user)
+
+
+        
+
+    return HttpResponseRedirect(reverse('home'))
+
+def LikeShort(request):
+    short = get_object_or_404(Shorts, id=request.POST.get('short_id'))
+   
+    if short.likes.filter(id=request.user.id).exists():
+        short.likes.remove(request.user)
+    else:
+        short.likes.add(request.user)
+
+
+        
+
+    return HttpResponseRedirect(reverse('shorts'))
 
 def register(request):
     if request.method == "POST":

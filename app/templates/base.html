@@ -30,6 +30,12 @@
                 }
             })
         });
+
+
+        function myFunction(x) {
+          x.classList.toggle("fa-thumbs-down");
+        }
+
     </script>
     <style>
       #logos{
@@ -45,7 +51,7 @@
         background-attachment: fixed;
         overflow: hidden;
         position: relative;
-        background-image: url(/uploads/bg/laugher1.jpg);
+        background-image: url(/media/bg/laugher1.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -56,17 +62,17 @@
       @keyframes change{
         0%
         {
-            background-image: url(/uploads/bg/laugher1.jpg);
+            background-image: url(/media/bg/laugher1.jpg);
         }
       
         20%
         {
-            background-image: url(/uploads/bg/laugherpro.jpg);
+            background-image: url(/media/bg/laugherpro.jpg);
         }
       
         40%
         {
-            background-image: url(/uploads/bg/laugherultra.jpg);
+            background-image: url(/media/bg/laugherultra.jpg);
         }
       }
     #bars {
@@ -102,6 +108,15 @@
       0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
       50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
       100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+    }
+
+    .like {
+        cursor: pointer;
+        user-select: none;
+      }
+
+    .like:hover {
+      color: darkblue;
     }
       
     </style>
