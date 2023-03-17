@@ -77,6 +77,27 @@ def story_upload(request):
   
     return render(request, 'earn.html', {'form':form})
 
+@ login_required
+def like(request):
+    if request.POST.get('action') == 'post':
+        result = ''
+        id = request.POST.get('postid')
+        meme = get_object_or_404(Memes, id=id)
+        if meme.likes.filter(id=request.user.id).exists():
+            meme.likes.remove(request.user)
+            meme.like_count -= 1
+            result = meme.like_count
+            meme.save()
+           
+        else:
+            meme.likes.add(request.user)
+            meme.like_count += 1
+            result = meme.like_count
+            meme.save()
+           
+
+        return JsonResponse({'result': str(result)})
+
     
 def LikeView(request):
     story = get_object_or_404(Stories, id=request.POST.get('story_id'))
@@ -92,7 +113,7 @@ def LikeView(request):
     return HttpResponseRedirect(reverse('stories'))
 
 
-def LikeMeme(request):
+'''def LikeMeme(request):
     meme = get_object_or_404(Memes, id=request.POST.get('meme_id'))
 
     if meme.likes.filter(id=request.user.id).exists():
@@ -100,10 +121,31 @@ def LikeMeme(request):
     else:
         meme.likes.add(request.user)
     
-    return HttpResponseRedirect(reverse('memes'))
+    return HttpResponseRedirect(reverse('memes'))'''
 
-
+@ login_required
 def LikeWhite(request):
+    if request.POST.get('action') == 'post':
+        result = ''
+        id = request.POST.get('postid')
+        joke = get_object_or_404(Jokes, id=id)
+        if joke.likes.filter(id=request.user.id).exists():
+            joke.likes.remove(request.user)
+            joke.like_count -= 1
+            result = joke.like_count
+            joke.save()
+           
+        else:
+            joke.likes.add(request.user)
+            joke.like_count += 1
+            result = joke.like_count
+            joke.save()
+           
+
+        return JsonResponse({'result': str(result)})
+
+
+'''def LikeWhite(request):
     joke = get_object_or_404(Jokes, id=request.POST.get('joke_id'))
    
     if joke.likes.filter(id=request.user.id).exists():
@@ -114,10 +156,33 @@ def LikeWhite(request):
 
         
 
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('home'))'''
 
-
+@ login_required
 def LikeDark(request):
+    if request.POST.get('action') == 'post':
+        result = ''
+        id = request.POST.get('postid')
+        joke = get_object_or_404(DarkJokes, id=id)
+        if joke.likes.filter(id=request.user.id).exists():
+            joke.likes.remove(request.user)
+            joke.like_count -= 1
+            result = joke.like_count
+            print("if was run",result)
+            joke.save()
+           
+        else:
+            joke.likes.add(request.user)
+            joke.like_count += 1
+            result = joke.like_count
+            print("else", result)
+            joke.save()
+           
+
+        return JsonResponse({'result': str(result)})
+
+
+'''def LikeDark(request):
     dark = get_object_or_404(DarkJokes, id=request.POST.get('dark_joke_id'))
    
     if dark.likes.filter(id=request.user.id).exists():
@@ -129,8 +194,29 @@ def LikeDark(request):
         
 
     return HttpResponseRedirect(reverse('home'))
-
+'''
+@ login_required
 def LikeShort(request):
+    if request.POST.get('action') == 'post':
+        result = ''
+        id = request.POST.get('postid')
+        short = get_object_or_404(Shorts, id=id)
+        if short.likes.filter(id=request.user.id).exists():
+            short.likes.remove(request.user)
+            short.like_count -= 1
+            result = short.like_count
+            short.save()
+           
+        else:
+            short.likes.add(request.user)
+            short.like_count += 1
+            result = short.like_count
+            short.save()
+           
+
+        return JsonResponse({'result': str(result)})
+
+'''def LikeShort(request):
     short = get_object_or_404(Shorts, id=request.POST.get('short_id'))
    
     if short.likes.filter(id=request.user.id).exists():
@@ -141,7 +227,7 @@ def LikeShort(request):
 
         
 
-    return HttpResponseRedirect(reverse('shorts'))
+    return HttpResponseRedirect(reverse('shorts'))'''
 
 def register(request):
     if request.method == "POST":

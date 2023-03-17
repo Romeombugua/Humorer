@@ -8,17 +8,17 @@
 
 </style>
 <script>
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  var y = document.getElementById("myBtn")
-  if (x.style.display === "none") {
-    x.style.display = "block";
-    y.innerHTML = "Hide Dark"
-  } else {
-    x.style.display = "none";
-    y.innerHTML = "Show Dark"
+  function myFunction() {
+    var x = document.getElementById("myDIV");
+    var y = document.getElementById("myBtn")
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      y.innerHTML = "Hide Dark"
+    } else {
+      x.style.display = "none";
+      y.innerHTML = "Show Dark"
+    }
   }
-}
 </script>
 <div id="home2" class="bgImage">
   <div style="padding-top: 3%;">
@@ -42,19 +42,19 @@ function myFunction() {
     <hr>
     {% for joke in jokes %}
     <div class = 'container-sm border' style="border-radius: 10px; box-shadow: 5px 5px 5px gray; padding: 5%; margin-bottom: 2%;">
-      <ul style="list-style-type: none;"><li>&#128517 {{joke}}</li></ul>
+      <ul style="list-style-type: none; text-align: center;"><li>&#128517 {{joke}}</li></ul>
       {% if user.is_authenticated %}
-      <form action="{% url 'like_white' %}" method="POST">
+      <form method="POST">
           {% csrf_token %}
 
-          <button type="submit" name="joke_id" value="{{joke.id}}" class="btn btn-prmary btn btn-sm">
-            <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+          <button type="submit" name="joke_id" value="{{joke.id}}" class="White btn btn-prmary btn btn-sm" id="like_count_{{joke.id}}">
+            <i class="fa fa-thumbs-up"></i> {{joke.like_count}} Laugh{{joke.like_count|pluralize }}
           </button>
       </form>
       {% else %}
       <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this item!</a><br>
       {% endif %}
-      <strong class="text-secondary">{{ joke.likes.count }} Laugh{{ joke.likes.count|pluralize }}</strong>
+ 
       
     </div>
     
@@ -72,24 +72,21 @@ function myFunction() {
         <div id="myDIV" style="text-align: center;">
           <h1>10 dark jokes to test how morbid your sense of how is!</h1>
           <hr>
-        {% for dark_joke in dark_jokes %}
-        <div class = 'container-sm border' style="border-radius: 10px; box-shadow: 5px 5px 5px gray; padding: 5%; margin-bottom: 2%;">
-          <ul style="list-style-type: none;"><li>&#128128 {{dark_joke}}</li></ul>
-          {% if user.is_authenticated %}
-          <form action="{% url 'like_dark' %}" method="POST">
-              {% csrf_token %}
-
-              <button type="submit" name="dark_joke_id" value="{{dark_joke.id}}" class="btn btn-prmary btn btn-sm">
-                <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
-              </button>
-          </form>
-          {% else %}
-          <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this item!</a><br>
-          {% endif %}
-          <strong class="text-secondary">{{ dark_joke.likes.count }} Laugh{{ dark_joke.likes.count|pluralize }}</strong>
-          
-        </div>
-        {% endfor %}
+          {% for dark_joke in dark_jokes %}
+          <div class='container-sm border' style="border-radius: 10px; box-shadow: 5px 5px 5px gray; padding: 5%; margin-bottom: 2%;">
+            <ul style="list-style-type: none; text-align: center;"><li>&#128128 {{dark_joke}}</li></ul>
+            {% if user.is_authenticated %}
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name="dark_joke_id" value="{{dark_joke.id}}" class="Dark btn btn-prmary btn btn-sm" id="like_count_{{dark_joke.id}}">
+                  <i class="fa fa-thumbs-up"></i> {{dark_joke.like_count}} Laugh{{dark_joke.like_count|pluralize }}
+                </button>
+            </form>
+            {% else %}
+            <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this item!</a><br>
+            {% endif %}
+          </div>
+          {% endfor %}
         </div>
         
 </div> 
@@ -101,7 +98,53 @@ function myFunction() {
    new possibilities
   </q></h3>
   <h5 class="quote">~ Jean Houston</h5>
-</div>
 
+  <script>
+
+    $(document).on('click', '.White', function (e) {
+        e.preventDefault();
+        var whiteid = $(this).val();
+        var button = $(this);
+        $.ajax({
+            type: 'POST',
+            url: '{% url "like_white" %}',
+            data: {
+                postid: whiteid,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                action: 'post'
+            },
+            success: function (json) {
+              var likeCountElement = document.getElementById("like_count_" + whiteid);
+              likeCountElement.textContent = json.result + " Laugh" + (json.result == 1 ? "" : "s");
+            },
+            error: function (xhr, errmsg, err) {
+
+            }
+        });
+    });
+
+    $(document).on('click', '.Dark', function (e) {
+        e.preventDefault();
+        var darkid = $(this).val();
+        var button = $(this);
+        $.ajax({
+            type: 'POST',
+            url: '{% url "like_dark" %}',
+            data: {
+                postid: darkid,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                action: 'post'
+            },
+            success: function (json) {
+              var likeCountElement = document.getElementById("like_count_" + darkid);
+              likeCountElement.textContent = json.result + " Laugh" + (json.result == 1 ? "" : "s");
+            },
+            error: function (xhr, errmsg, err) {
+
+            }
+        });
+    });
+    
+  </script>
 
 {% endblock %}

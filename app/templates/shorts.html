@@ -21,17 +21,17 @@
         <div>
           <a id="source" href="{{short.source}}" class="btn btn-outline-info">Source</a>
             {% if user.is_authenticated %}
-            <form action="{% url 'like_short' %}" method="POST">
+            <form  method="POST">
                 {% csrf_token %}
 
-                <button type="submit" name="short_id" value="{{short.id}}" class="btn btn-prmary btn btn-sm">
-                  <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+                <button type="submit" name="short_id" value="{{short.id}}" class="Shorter btn btn-prmary btn btn-sm" id="like_count_{{short.id}}" style="margin-top: 1%;">
+                  <i class="fa fa-thumbs-up"></i> {{short.like_count}} Laugh{{short.like_count|pluralize }}
                 </button>
             </form>
             {% else %}
             <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this item!</a><br>
             {% endif %}
-            <strong class="text-secondary">{{ short.likes.count }} Laugh{{ short.likes.count|pluralize }}</strong>
+          
          
         </div>
       </div>
@@ -40,13 +40,39 @@
     {% else %}
       <p>There are no shorts in the database.</p>
     {% endif %}
-    </div>  
+   
     <div style="text-align: center; margin-top: 5%;">
       <h3 class="quote"><q>A good laugh is a mighty good thing,<br>
        a rather too scarce <br>
        a good thing
       </q></h3>
       <h5 class="quote">~ Herman Melville</h5>
-    </div>    
+  
+    
+    <script>
+
+      $(document).on('click', '.Shorter', function (e) {
+          e.preventDefault();
+          var shortid = $(this).val();
+          var button = $(this);
+          $.ajax({
+              type: 'POST',
+              url: '{% url "like_short" %}',
+              data: {
+                  postid: shortid,
+                  csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                  action: 'post'
+              },
+              success: function (json) {
+                var likeCountElement = document.getElementById("like_count_" + shortid);
+                likeCountElement.textContent = json.result + " Laugh" + (json.result == 1 ? "" : "s");
+              },
+              error: function (xhr, errmsg, err) {
+
+              }
+          });
+      });
+      
+    </script>
     {% endblock %}
    

@@ -10,26 +10,25 @@
       <h1>10 funny memes to start your day!</h1>
 
       {% for meme in memes %}
+
       <div style="padding-top: 10%; max-width: inherit; "  >
 
             <a target="_blank" href="{{ meme.image.url }}" class="text-center">
               <img class="img-fluid" id="meme" src="{{ meme.image.url }}" alt="" >
             </a>
             {% if user.is_authenticated %}
-            <form action="{% url 'like_meme' %}" method="POST">
+            <form  method="POST">
                 {% csrf_token %}
 
-                <button type="submit" name="meme_id" value="{{meme.id}}" class="btn btn-prmary btn btn-sm">
-                  <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+                <button type="submit" name="meme_id" value="{{meme.id}}" class="Memer btn btn-prmary btn btn-sm" id="like_count_{{meme.id}}" style="margin-top: 2%;">
+                  <i class="fa fa-thumbs-up"></i> {{meme.like_count}} Laugh{{meme.like_count|pluralize }}
                 </button>
             </form>
             {% else %}
             <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this item!</a><br>
             {% endif %}
-            <strong class="text-secondary">{{ meme.likes.count }} Laugh{{ meme.likes.count|pluralize }}</strong>
             
-          
-      </div>
+
       {% endfor %}
 
     {% else %}
@@ -42,6 +41,35 @@
        contagious as laughter
       </q></h3>
       <h5 class="quote">~ Charles Dickens</h5>
-    </div>    
-    {% endblock %}
+    </div> 
+    
+    <script>
+
+      $(document).on('click', '.Memer', function (e) {
+          e.preventDefault();
+          var memeid = $(this).val();
+          var button = $(this);
+          $.ajax({
+              type: 'POST',
+              url: '{% url "likeM" %}',
+              data: {
+                  postid: memeid,
+                  csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                  action: 'post'
+              },
+              success: function (json) {
+                var likeCountElement = document.getElementById("like_count_" + memeid);
+                likeCountElement.textContent = json.result + " Laugh" + (json.result == 1 ? "" : "s");
+              },
+              error: function (xhr, errmsg, err) {
+
+              }
+          });
+      });
+      
+    </script>
+
+
+{% endblock %}
+
    

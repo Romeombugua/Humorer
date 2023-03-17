@@ -1,4 +1,4 @@
-document.addEventListener("visibilitychange", onVisibilityChange);
+//document.addEventListener("visibilitychange", onVisibilityChange);
 
 function reveal()
   {
@@ -63,7 +63,21 @@ $(function() {
               toTop.attr("id", "toTop");
               toTop.attr("href", "#");
               toTop.css("display", "none");
-              toTop.html("You're Done! Scroll to Top of Page");
+              toTop.css({
+                "display": "flex",
+                "align-items": "center",
+                "justify-content": "center",
+                "bottom": "0px",
+                "left": "50%",
+                
+                
+                "color": "blue",
+                "padding": "10px",
+                "border-radius": "20px",
+                "text-decoration": "none",
+                "font-size": "10px"
+                });
+              toTop.html("You have laughed enough! Click me to go back home");
                 // Bind scroll to top of page functionality
               toTop.click(function() {
                   $('html, body').animate({scrollTop:0}, 'slow', function() {
@@ -107,17 +121,17 @@ $( document ).ready(function() {
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
 
-hamburger.addEventListener("click", () => {
+/*hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("active");
   navMenu.classList.toggle("active");
-})
+})*/
 
 document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
   hamburger.classList.remove("active");
   navMenu.classList.remove("active");
 }))
 
-function myFunction() {
+/*function myFunction() {
   var dots = document.getElementById("dots");
   var moreText = document.getElementById("dark");
   var btnText = document.getElementById("myBtn");
@@ -131,10 +145,10 @@ function myFunction() {
     btnText.innerHTML = "Hide Dark"; 
     moreText.style.display = "inline";
   }
-}
+}*/
 
 // login
-var current = null;
+/*var current = null;
 document.querySelector('#email').addEventListener('focus', function(e) {
   if (current) current.pause();
   current = anime({
@@ -182,4 +196,4 @@ document.querySelector('#submit').addEventListener('focus', function(e) {
       easing: 'easeOutQuart'
     }
   });
-});
+});*/

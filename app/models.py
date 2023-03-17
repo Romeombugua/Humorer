@@ -19,7 +19,8 @@ class Category(models.Model):
 
 class Jokes(models.Model):
     joke = models.TextField(help_text='Enter a joke')
-    likes = models.ManyToManyField(User, related_name='joke_posts')
+    likes = models.ManyToManyField(User, related_name='like_joke', default=None, blank=True)
+    like_count = models.BigIntegerField(default='0')
  
     category= models.ForeignKey(Category,on_delete=models.CASCADE,default=1 )
     
@@ -31,14 +32,16 @@ class Memes(models.Model):
     name = models.CharField(max_length=50, help_text="upload a meme")
     image = models.ImageField(upload_to = 'media/memes', blank=False, default='memes/download.jpg')
     category= models.ForeignKey(Category,on_delete=models.CASCADE,blank=True, default=1 )
-    likes = models.ManyToManyField(User, related_name='meme_posts')
+    likes = models.ManyToManyField(User, related_name='like', default=None, blank=True)
+    like_count = models.BigIntegerField(default='0')
 
     def __str__(self):
         return self.name
 
 class DarkJokes(models.Model):
     dark_joke = models.TextField(help_text='Enter a dark joke')
-    likes = models.ManyToManyField(User, related_name='dark_posts')
+    likes = models.ManyToManyField(User, related_name='like_dark', default=None, blank=True)
+    like_count = models.BigIntegerField(default='0')
 
     category= models.ForeignKey(Category,on_delete=models.CASCADE,default=1 )
 
@@ -79,7 +82,8 @@ class Shorts(models.Model):
     name = models.CharField(max_length=50, help_text="upload a short")
     video = models.FileField(upload_to = 'media/shorts', blank=False, default='shorts/download.mp4')
     source = models.CharField(max_length=255, default='#')
-    likes = models.ManyToManyField(User, related_name='short_posts')
+    likes = models.ManyToManyField(User, related_name='like_short', default=None, blank=True)
+    like_count = models.BigIntegerField(default='0')
     def __str__(self):
         return self.name
 
