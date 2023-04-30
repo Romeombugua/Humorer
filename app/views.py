@@ -205,15 +205,14 @@ def LikeShort(request):
             short.likes.remove(request.user)
             short.like_count -= 1
             result = short.like_count
-            short.save()
            
         else:
             short.likes.add(request.user)
             short.like_count += 1
             result = short.like_count
-            short.save()
-           
-
+            
+        short.save(update_fields=['like_count'])
+        
         return JsonResponse({'result': str(result)})
 
 '''def LikeShort(request):

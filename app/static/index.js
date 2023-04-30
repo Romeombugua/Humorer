@@ -63,20 +63,6 @@ $(function() {
               toTop.attr("id", "toTop");
               toTop.attr("href", "#");
               toTop.css("display", "none");
-              toTop.css({
-                "display": "flex",
-                "align-items": "center",
-                "justify-content": "center",
-                "bottom": "0px",
-                "left": "50%",
-                
-                
-                "color": "blue",
-                "padding": "10px",
-                "border-radius": "20px",
-                "text-decoration": "none",
-                "font-size": "10px"
-                });
               toTop.html("You have laughed enough! Click me to go back home");
                 // Bind scroll to top of page functionality
               toTop.click(function() {

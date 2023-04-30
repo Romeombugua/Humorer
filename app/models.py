@@ -88,16 +88,17 @@ class Shorts(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        # Cut video in to sub clip and store them using python moviepy
-        input_video = VideoFileClip(self.video.path)
-        path = self.video.path
-        sep = os.path.sep
-        new_name = f'{settings.BASE_DIR}{sep}media{sep}shorts{os.path.sep}{uuid.uuid4()}.mp4'
-        end_time = input_video.duration - 4
-        ffmpeg_extract_subclip(self.video.path, 0, end_time, targetname=new_name)
-        self.video.name = new_name
-        input_video.close()
+        if not self.pk:  # Only cut video if this is a new instance (i.e. the video has not been cut before)
+            # Cut video in to sub clip and store them using python moviepy
+            input_video = VideoFileClip(self.video.path)
+            path = self.video.path
+            sep = os.path.sep
+            new_name = f'{settings.BASE_DIR}{sep}media{sep}media{sep}shorts{os.path.sep}{uuid.uuid4()}.mp4'
+            end_time = input_video.duration - 4
+            ffmpeg_extract_subclip(self.video.path, 0, end_time, targetname=new_name)
+            self.video.name = new_name
+            input_video.close()
+
         super().save(*args, **kwargs)
 
 class LikePost(models.Model):
