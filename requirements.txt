@@ -10,7 +10,7 @@ colorama==0.4.6
 decorator==4.4.2
 deprecation==2.1.0
 dill==0.3.5.1
-distlib==0.3.5
+distlib
 dj-database-url==1.0.0
 Django==4.0.6
 django-bootstrap3==22.1
