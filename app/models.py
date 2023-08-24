@@ -30,7 +30,7 @@ class Jokes(models.Model):
 
 class Memes(models.Model):
     name = models.CharField(max_length=50, help_text="upload a meme")
-    image = models.ImageField(upload_to = 'media/memes', blank=False, default='memes/download.jpg')
+    image = models.ImageField(upload_to = 'memes', blank=False, default='memes/download.jpg')
     category= models.ForeignKey(Category,on_delete=models.CASCADE,blank=True, default=1 )
     likes = models.ManyToManyField(User, related_name='like', default=None, blank=True)
     like_count = models.BigIntegerField(default='0')
@@ -60,7 +60,7 @@ class Stories(models.Model):
                         on_delete = models.SET_NULL
                         )
     title = models.CharField(max_length = 100)
-    image = models.ImageField(upload_to = 'media/memes', blank=False, default='memes/download.jpg')
+    image = models.ImageField(upload_to = 'memes', blank=False, default='memes/download.jpg')
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
@@ -80,26 +80,33 @@ class Stories(models.Model):
 
 class Shorts(models.Model):
     name = models.CharField(max_length=50, help_text="upload a short")
-    video = models.FileField(upload_to = 'media/shorts', blank=False, default='shorts/download.mp4')
+    video = models.FileField(upload_to='shorts', blank=False, default='shorts/download.mp4')
     source = models.CharField(max_length=255, default='#')
     likes = models.ManyToManyField(User, related_name='like_short', default=None, blank=True)
     like_count = models.BigIntegerField(default='0')
+
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
-        if not self.pk:  # Only cut video if this is a new instance (i.e. the video has not been cut before)
-            # Cut video in to sub clip and store them using python moviepy
-            input_video = VideoFileClip(self.video.path)
-            path = self.video.path
-            sep = os.path.sep
-            new_name = f'{settings.BASE_DIR}{sep}media{sep}media{sep}shorts{os.path.sep}{uuid.uuid4()}.mp4'
-            end_time = input_video.duration - 4
-            ffmpeg_extract_subclip(self.video.path, 0, end_time, targetname=new_name)
-            self.video.name = new_name
-            input_video.close()
+        if not self.pk:  # Only cut video if this is a new instance (i.e., the video has not been cut before)
+            super().save(*args, **kwargs)  # Save the instance first to get a valid primary key
 
-        super().save(*args, **kwargs)
+            # Cut video into a subclip and store it using python moviepy
+            input_video = VideoFileClip(self.video.path)
+            sep = os.path.sep
+            filename, ext = os.path.splitext(os.path.basename(self.video.name))
+            new_filename = f'{filename}_{uuid.uuid4()}{ext}'
+            new_path = os.path.join(settings.MEDIA_ROOT, 'shorts', new_filename)
+            end_time = input_video.duration - 4
+            ffmpeg_extract_subclip(self.video.path, 0, end_time, targetname=new_path)
+
+            # Update the video field with the new path
+            self.video.name = os.path.relpath(new_path, settings.MEDIA_ROOT)
+            input_video.close()
+        super().save(*args, **kwargs)  # Save the instance with the updated video path
+
+        
 
 class LikePost(models.Model):
     story = models.ForeignKey(Stories,on_delete=models.CASCADE, null=True)
