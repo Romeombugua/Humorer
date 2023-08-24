@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-4!h(6d+2%x2(w921109weady%ciov&&qro(-141y*co8o5fj+x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['web-production-5753.up.railway.app','127.0.0.1','localhost','Humorer-dev.us-west-2.elasticbeanstalk.com','172.31.35.231','.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','40.122.196.94','humorer.online','www.humorer.online']
 
 
 # Application definition
