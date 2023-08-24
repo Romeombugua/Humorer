@@ -9,7 +9,7 @@
     {% block title %}<title>Humorer</title>{% endblock %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
     <link rel="shortcut icon" type="image/png" href="{% static 'images/icon.jpg' %}"/>

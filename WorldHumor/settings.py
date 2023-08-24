@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'storages',
     'crispy_forms',
+    "crispy_bootstrap4",
     'verify_email.apps.VerifyEmailConfig',
     'app.apps.AppConfig',
     'django_cleanup.apps.CleanupConfig',
@@ -133,6 +134,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK= "bootstrap4"
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
@@ -142,13 +144,13 @@ LOGIN_URL = '/accounts/login/'
 MAX_RETRIES = 2
 # Email server
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtppro.zoho.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'info.humorer@gmail.com'
-EMAIL_HOST_PASSWORD = 'zbfgtwrflusafrfc'
+EMAIL_HOST_USER = 'accounts@humorer.online'
+EMAIL_HOST_PASSWORD = '6wt8BknczDLn'
 
-DEFAULT_FROM_EMAIL = 'info.humorer@gmail.com'
+DEFAULT_FROM_EMAIL = 'accounts@humorer.online'
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
