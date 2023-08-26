@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'verify_email.apps.VerifyEmailConfig',
     'app.apps.AppConfig',
     'django_cleanup.apps.CleanupConfig',
+    'django.contrib.sitemaps'
     
 ]
 

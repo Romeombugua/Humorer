@@ -27,6 +27,9 @@ class Jokes(models.Model):
 
     def __str__(self):
         return self.joke
+    
+    def get_absolute_url(self):
+        return reverse('home')
 
 class Memes(models.Model):
     name = models.CharField(max_length=50, help_text="upload a meme")
@@ -37,7 +40,9 @@ class Memes(models.Model):
 
     def __str__(self):
         return self.name
-
+    def get_absolute_url(self):
+        return reverse('memes')
+    
 class DarkJokes(models.Model):
     dark_joke = models.TextField(help_text='Enter a dark joke')
     likes = models.ManyToManyField(User, related_name='like_dark', default=None, blank=True)
@@ -47,6 +52,8 @@ class DarkJokes(models.Model):
 
     def __str__(self):
         return self.dark_joke
+    def get_absolute_url(self):
+        return reverse('home')
 
 STATUS = (
     (0,"Draft"),
@@ -87,6 +94,8 @@ class Shorts(models.Model):
 
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse('shorts')
 
     def save(self, *args, **kwargs):
         if not self.pk:  # Only cut video if this is a new instance (i.e., the video has not been cut before)

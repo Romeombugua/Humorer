@@ -1,6 +1,15 @@
 from django.urls import path
 from . import views
 from django.urls import include
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import JokesSitemap, MemesSitemap, ShortsSitemap
+
+
+sitemaps = {
+    'jokes': JokesSitemap,
+    'memes': MemesSitemap,
+    'shorts': ShortsSitemap,
+}
 
 
 urlpatterns = [
@@ -19,4 +28,5 @@ urlpatterns = [
     #path('<slug:slug>/', views.StoryDetail.as_view(), name='stories_detail'),
     path('register', views.register, name='register'),
     path('profile/<username>', views.profile, name='profile'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     ]
