@@ -21,7 +21,6 @@ def index(request):
 
     return render(request, 'index.html', context = context)
 
-@login_required
 def home(request):
     jokes = Jokes.objects.all()[5:15]
     dark_jokes = DarkJokes.objects.all()[:10]
