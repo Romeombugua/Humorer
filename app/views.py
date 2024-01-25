@@ -22,14 +22,18 @@ def index(request):
     return render(request, 'index.html', context = context)
 
 def home(request):
-    jokes = Jokes.objects.all()[5:15]
+
+    return render(request, 'home.html')
+
+def joke(request):
+    jokes = Jokes.objects.all()[:10]
     dark_jokes = DarkJokes.objects.all()[:10]
     context = {
         'jokes':jokes,
         'dark_jokes':dark_jokes
     }
 
-    return render(request, 'home.html', context = context)
+    return render(request, 'jokes.html', context = context)
 
 def meme(request):
     memes = Memes.objects.all()[:10]
@@ -40,6 +44,7 @@ def meme(request):
 
 def shorts(request):
     shorts = Shorts.objects.all()[:10]
+
     context = {
         'shorts':shorts
     }

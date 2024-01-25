@@ -13,8 +13,9 @@ sitemaps = {
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('home', views.home, name='home'),
+    #path('', views.index, name='index'),
+    path('', views.home, name='home'),
+    path('jokes', views.joke, name='jokes'),
     path('memes', views.meme, name='memes'),
     path('shorts', views.shorts, name='shorts'),
     #path('stories', views.StoryListView.as_view(), name='stories'),

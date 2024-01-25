@@ -1,154 +1,62 @@
-{% extends "base.html" %}
-{% block title %}<title>Humorer | Home</title>{% endblock %}
-{% block meta_description %}
-    Explore a collection of light-hearted jokes and daring dark humor on our web page. Discover witty quips that tickle your funny bone, alongside edgier jokes that push the boundaries. Brace yourself for a rollercoaster of emotions as you navigate the contrast between laughter and shadows.
-{% endblock %}
-{% load static %}
-{% block content %}
-<style>
-    #myDIV {
-        display: none;
-        }
-
-</style>
-<script>
-  function myFunction() {
-    var x = document.getElementById("myDIV");
-    var y = document.getElementById("myBtn")
-    if (x.style.display === "none") {
-      x.style.display = "block";
-      y.innerHTML = "Hide Dark"
-    } else {
-      x.style.display = "none";
-      y.innerHTML = "Show Dark"
-    }
-  }
-</script>
-<div id="home2" class="bgImage">
-  <div style="padding-top: 3%;">
-    <h1 class="head-main" style="color: yellow;text-align: center;">CRACK A RIB</h1>
-    <h2 class="head-sub-main" style="color: yellow;text-align: center;">Dark humor, Memes, Vines, Funny stories all in one place</h2>
-    <h3 class="head-last" style="color: yellow;text-align: center;">You can count on us to lighten up your day &#128516</h3>
-  </div>
-    <div class="homebtn" style="display: block; justify-content: center; text-align: center; padding-bottom: 5%; padding-top: 3%;">  
-    <div  ><button type="button" class="btn btn-secondary btn-lg" onclick="myFunction()" id="myBtn">Show Dark</button></div>
-  </div>
-</div>
-</div>
-<div style="text-align: center;">
-  <span style="background-color: black; color: yellow; border-radius: 0px 0px 10px 10px;">Editor's Choice</span>
-</div>
-
-<div style="padding-top: 2%;" > 
-<div class="container-md" style="text-align: center;">
-    <!--<h4>Welcome {{ user.username }}</h4>-->
-    <h1>10 funny jokes for some Serotonin activation &#128513</h1>
-    <hr>
-    {% for joke in jokes %}
-    <div class = 'container-sm border' style="border-radius: 10px; box-shadow: 5px 5px 5px gray; padding: 5%; margin-bottom: 2%;">
-      <ul style="list-style-type: none; text-align: center;"><li>&#128517 {{joke}}</li></ul>
-      {% if user.is_authenticated %}
-      <form method="POST">
-          {% csrf_token %}
-
-          <button type="submit" name="joke_id" value="{{joke.id}}" class="White btn btn-prmary btn btn-sm" id="like_count_{{joke.id}}">
-            <i class="fa fa-thumbs-up"></i> {{joke.like_count}} Laugh{{joke.like_count|pluralize }}
-          </button>
-      </form>
-      {% else %}
-      <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}"><i class="fa fa-thumbs-up"></i></a><br>
-      {% endif %}
- 
-      
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humorer | Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+     <!-- Video Source -->
+  <!-- https://www.pexels.com/video/aerial-view-of-beautiful-resort-2169880/ -->
+  <section class="showcase">
+    <header
+      <h2 class="logo"><img src="{% static 'images/humorerlogo.png' %}" width="200" style="border: #131212;"/></h2>
+      <div class="toggle"></div>
+    </header>
+    <video src="{% static 'images/pexels-darina-belonogova-8763653 (1080p).mp4' %}" muted loop autoplay></video>
+    <div class="overlay"></div>
+    <div class="text">
+      <h2>Embark on a  </h2> 
+      <h3>Hilarity Odyssey</h3>
+      <p style="font-family: cursive;">"Caution: Side effects may include excessive smiling and an uncontrollable
+         urge to share with friends. Embrace the madness – laughter's the best therapy, 
+         and we've got a PhD in that too!"</p>
     </div>
-    
-    {% endfor %}
+    <ul class="social">
+      <li><a href="#"><img src="https://i.ibb.co/x7P24fL/facebook.png"></a></li>
+      <li><a href="#"><img src="https://i.ibb.co/Wnxq2Nq/twitter.png"></a></li>
+      <li><a href="#"><img src="https://i.ibb.co/ySwtH4B/instagram.png"></a></li>
+    </ul>
+  </section>
+  <div class="menu">
+    <ul>
+      <li><a href="{% url 'jokes' %}">Jokes</a></li>
+      <li><a href="{% url 'memes' %}">Memes</a></li>
+      <li><a href="{% url 'shorts' %}">Videos</a></li>
+      <li><a href="{% url 'stories' %}">Stories</a></li>
+      <li><a href="{% url 'earn' %}">Earn</a></li>
+      <li>
+        {% if user.is_authenticated %}
+        <a href="{% url 'profile' user.username %}" style="color: black;">
+          <i class="fas fa-user"></i> {{user.username}} 
+        {% else %}
+        <a href="{% url 'login' %}" style="color: black;">
+          <i class="fas fa-user"></i> Login
+        {% endif %}
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>
+<script>
+     const menuToggle = document.querySelector('.toggle');
+      const showcase = document.querySelector('.showcase');
 
-</div>
-</div>
-<hr>
-<div style="padding-top: 0%;">
-<div class="container-md">
-        <div  style="text-align: center;"><span >Dark &#128128</span><br>
-        <span id="dots">...</span>
-        </div>
-        
-        <div id="myDIV" style="text-align: center;">
-          <h1>10 dark jokes to test how morbid your sense of how is!</h1>
-          <hr>
-          {% for dark_joke in dark_jokes %}
-          <div class='container-sm border' style="border-radius: 10px; box-shadow: 5px 5px 5px gray; padding: 5%; margin-bottom: 2%;">
-            <ul style="list-style-type: none; text-align: center;"><li>&#128128 {{dark_joke}}</li></ul>
-            {% if user.is_authenticated %}
-            <form method="POST">
-                {% csrf_token %}
-                <button type="submit" name="dark_joke_id" value="{{dark_joke.id}}" class="Dark btn btn-prmary btn btn-sm" id="like_count_{{dark_joke.id}}">
-                  <i class="fa fa-thumbs-up"></i> {{dark_joke.like_count}} Laugh{{dark_joke.like_count|pluralize }}
-                </button>
-            </form>
-            {% else %}
-            <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this item!</a><br>
-            {% endif %}
-          </div>
-          {% endfor %}
-        </div>
-        
-</div> 
-
-</div>
-<div style="text-align: center; margin-top: 5%;">
-  <h3 class="quote"><q>At the height of laughter,<br>
-   the universe is flung into a kaleidoscope of <br>
-   new possibilities
-  </q></h3>
-  <h5 class="quote">~ Jean Houston</h5>
-
-  <script>
-
-    $(document).on('click', '.White', function (e) {
-        e.preventDefault();
-        var whiteid = $(this).val();
-        var button = $(this);
-        $.ajax({
-            type: 'POST',
-            url: '{% url "like_white" %}',
-            data: {
-                postid: whiteid,
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                action: 'post'
-            },
-            success: function (json) {
-              var likeCountElement = document.getElementById("like_count_" + whiteid);
-              likeCountElement.textContent = json.result + " Laugh" + (json.result == 1 ? "" : "s");
-            },
-            error: function (xhr, errmsg, err) {
-
-            }
-        });
-    });
-
-    $(document).on('click', '.Dark', function (e) {
-        e.preventDefault();
-        var darkid = $(this).val();
-        var button = $(this);
-        $.ajax({
-            type: 'POST',
-            url: '{% url "like_dark" %}',
-            data: {
-                postid: darkid,
-                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                action: 'post'
-            },
-            success: function (json) {
-              var likeCountElement = document.getElementById("like_count_" + darkid);
-              likeCountElement.textContent = json.result + " Laugh" + (json.result == 1 ? "" : "s");
-            },
-            error: function (xhr, errmsg, err) {
-
-            }
-        });
-    });
-    
-  </script>
-
-{% endblock %}
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        showcase.classList.toggle('active');
+      })
+</script>
+</html>

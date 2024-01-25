@@ -34,7 +34,7 @@ class Jokes(models.Model):
 class Memes(models.Model):
     name = models.CharField(max_length=50, help_text="upload a meme")
     image = models.ImageField(upload_to = 'memes', blank=False, default='memes/download.jpg')
-    category= models.ForeignKey(Category,on_delete=models.CASCADE,blank=True, default=1 )
+    category= models.ForeignKey(Category,on_delete=models.CASCADE,blank=False, default=1 )
     likes = models.ManyToManyField(User, related_name='like', default=None, blank=True)
     like_count = models.BigIntegerField(default='0')
 
@@ -42,6 +42,11 @@ class Memes(models.Model):
         return self.name
     def get_absolute_url(self):
         return reverse('memes')
+    
+    @property
+    def absolute_meme_url(self):
+        base_url = 'http://127.0.0.1:8000'
+        return f"{base_url}{self.image.url}"
     
 class DarkJokes(models.Model):
     dark_joke = models.TextField(help_text='Enter a dark joke')
@@ -88,7 +93,8 @@ class Stories(models.Model):
 class Shorts(models.Model):
     name = models.CharField(max_length=50, help_text="upload a short")
     video = models.FileField(upload_to='shorts', blank=False, default='shorts/download.mp4')
-    source = models.CharField(max_length=255, default='#')
+    thumbnail = models.ImageField(upload_to='shorts/thumbnails', blank=True, default='shorts/thumbnails/download.jpg')
+    source = models.CharField(max_length=255, default='#', blank=True)
     likes = models.ManyToManyField(User, related_name='like_short', default=None, blank=True)
     like_count = models.BigIntegerField(default='0')
 
@@ -96,6 +102,11 @@ class Shorts(models.Model):
         return self.name
     def get_absolute_url(self):
         return reverse('shorts')
+    
+    @property
+    def absolute_video_url(self):
+        base_url = 'http://127.0.0.1:8000'
+        return f"{base_url}{self.video.url}"
 
     def save(self, *args, **kwargs):
         if not self.pk:  # Only cut video if this is a new instance (i.e., the video has not been cut before)

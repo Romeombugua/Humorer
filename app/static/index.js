@@ -63,7 +63,7 @@ $(function() {
               toTop.attr("id", "toTop");
               toTop.attr("href", "#");
               toTop.css("display", "none");
-              toTop.html("You have laughed enough! Click me to go back home");
+              toTop.html("You have laughed enough! Click me to go back to the top");
                 // Bind scroll to top of page functionality
               toTop.click(function() {
                   $('html, body').animate({scrollTop:0}, 'slow', function() {

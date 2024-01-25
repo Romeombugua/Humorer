@@ -5,7 +5,7 @@
 {% endblock %}
     {% block content %}
     <div id="home2" class="bgImage" >
-      <h1 style="text-align: center; color: yellow;margin: 10%;">Laughter will always be the best medicine. Have you had your shot today?<i class="fas fa-laugh    "></i>
+      <h1 style="text-align: center; color: yellow;margin: 10%;">Grab your popcorn, hit play, and let the laughter roll – because here, every frame is a masterpiece of mirth <i class="fas fa-laugh    "></i>
     </div>
 
     {% if shorts %}
@@ -17,8 +17,10 @@
       <div style="margin: 0%; box-shadow: 5px 5px 5px gray; border-radius: 10px; margin-bottom: 5%;">
         <div class="embed-responsive embed-responsive-16by9"  style="border-radius: 10px; height: 80vh; margin-bottom: 5%;">
 
-            <video style="border-radius:0px; padding: 0%;" class="embed-responsive-item"  controls>
+            <video style="border-radius:0px; padding: 0%;" class="embed-responsive-item"  controls poster="{{short.thumbnail.url}}">
               <source src="{{ short.video.url }}">
+              <p>Your browser doesn't support HTML5 video. Here is
+                a <a href="{{ short.video.url }}">link to the video</a> instead.</p>
             </video>
           <!--<iframe id="video" style="border-radius:20px; height: 80%;" class="embed-responsive-item" src="{{ short.video.url }}" allowfullscreen></iframe>-->
         </div>
@@ -38,6 +40,8 @@
           
          
         </div>
+        <button class="btn btn-outline-info" onclick="copyVideoUrl('{{ short.absolute_video_url }}')" style="margin-top: 0.5em;"><i class="fas fa-share"></i></button>
+        <div id="shareUrl"></div>
       </div>
       {% endfor %}
 
@@ -76,6 +80,29 @@
               }
           });
       });
+      
+      function copyVideoUrl(url) {
+        var textarea = document.createElement('textarea');
+        textarea.value = url;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        // Display the confirmation message next to the clicked button
+        var shareUrlElement = document.createElement('div');
+        shareUrlElement.innerHTML = 'URL copied to clipboard &#128513';
+        var button = event.target;
+        button.parentNode.appendChild(shareUrlElement);
+
+        // Optionally, clear the message after a few seconds
+        setTimeout(function () {
+            shareUrlElement.parentNode.removeChild(shareUrlElement);
+        }, 3000);
+    }
       
     </script>
     {% endblock %}

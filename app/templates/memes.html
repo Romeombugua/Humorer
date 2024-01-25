@@ -5,17 +5,17 @@
 {% endblock %}
     {% block content %}
     <div id="home2" class="bgImage" >
-      <h1 style="text-align: center; color: yellow; margin: 10%;">A day without memes is full of tension, depression and hypertension. Laugh to live! <i class="fas fa-laugh    "></i>
+      <h2 style="text-align: center; color: yellow; margin: 10%;"> Meme-ories are made here – enter at your own risk and prepare for meme magic!" <i class="fas fa-laugh    "></i>
     </div>
 
     {% if memes %}
     <div class="container-sm border" style="border-radius: 20px;text-align: center;">
       <span style="background-color: black; color: yellow; border-radius: 0px 0px 10px 10px;">Editor's Choice</span>
-      <h1>10 funny memes to start your day!</h1>
+      <h3>10 funny memes to start your day!</h3>
 
       {% for meme in memes %}
 
-      <div style="padding-top: 10%; max-width: inherit; "  >
+      <div style="padding-top: 2.5%; max-width: inherit; "  >
 
             <a target="_blank" href="{{ meme.image.url }}" class="text-center">
               <img class="img-fluid" id="meme" src="{{ meme.image.url }}" alt="" >
@@ -32,7 +32,8 @@
             <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}"><i class="fa fa-thumbs-up"></i></a><br>
             {% endif %}
             
-
+            <button class="btn btn-outline-info" onclick="copyMemeUrl('{{ meme.absolute_meme_url }}')" style="margin-top: 0.5em;"><i class="fas fa-share"></i></button>
+            <div id="shareUrl"></div>
       {% endfor %}
 
     {% else %}
@@ -71,6 +72,28 @@
           });
       });
       
+      function copyMemeUrl(url) {
+        var textarea = document.createElement('textarea');
+        textarea.value = url;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        // Display the confirmation message next to the clicked button
+        var shareUrlElement = document.createElement('div');
+        shareUrlElement.innerHTML = 'URL copied to clipboard &#128513';
+        var button = event.target;
+        button.parentNode.appendChild(shareUrlElement);
+
+        // Optionally, clear the message after a few seconds
+        setTimeout(function () {
+            shareUrlElement.parentNode.removeChild(shareUrlElement);
+        }, 3000);
+    }
     </script>
 
 
