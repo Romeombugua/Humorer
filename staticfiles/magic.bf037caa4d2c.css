@@ -1,0 +1,57 @@
+
+.quote {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right,#020024,
+    #090979, #00d4ff);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-weight: 800;
+  }
+
+.head-main {
+    font-size:80px ;
+    font-weight:900;
+    text-align: center;
+    
+}
+.head-sub-main {
+    text-align: center;
+    font-size:40px ;
+    font-weight:600;
+    padding:5px 20px 10px 20px;
+}
+.head-last {
+    text-align: center;
+    font-size:20px ;
+    font-weight:600;
+    padding:5px 20px 20px 20px;
+}
+.homebtn{
+    text-align: center;
+    justify-content: center;
+    display: block;
+}
+
+#meme{
+    border-radius: 10px; 
+    height: 400px; 
+    border: 2px solid black; 
+    width: 50%;
+    object-fit: cover;
+}
+
+@media (max-width: 767px) {
+    #meme{
+        width: 80%;
+        height: 200px;
+        border-radius: 10px;
+        border: 2px solid black;
+      
+    }
+  }
+
+@media (max-width: 767px) {
+    #source{
+        margin-bottom: 1.5%;
+    }
+  }
