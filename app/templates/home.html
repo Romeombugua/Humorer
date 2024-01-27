@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Humorer | Home</title>
     {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/icon.jpg' %}"/>
     <link rel="stylesheet" href="{% static 'home.css' %}">
 </head>
 <body>
@@ -12,7 +13,7 @@
   <!-- https://www.pexels.com/video/aerial-view-of-beautiful-resort-2169880/ -->
   <section class="showcase">
     <header
-      <h2 class="logo"><img src="{% static 'images/humorerlogo.png' %}" width="200" style="border: #131212;"/></h2>
+      <h2 class="logo"><img src="{% static 'images/humorerlogo.png' %}" width="200" style="border: #131212;"></h2>
       <div class="toggle"></div>
     </header>
     <video src="{% static 'images/pexels-darina-belonogova-8763653 (1080p).mp4' %}" muted loop autoplay></video>
