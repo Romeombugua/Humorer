@@ -43,10 +43,13 @@
         <h1>We are still tweaking a few details</h1>
         <div id="countdown"></div>
         <div id="aftertext" style="text-align: center; border-radius: 10px; border: #eee; margin-top: 1em;">
+          {% if user.is_authenticated %}
+          <span>We'll let you know once we are done!</span>
+          {% else %}
           <span>Login to get the latest updates!</span>
           <br>
-        
           <a href="{% url 'login' %}"><button>Login</button></a>
+          {% endif %}
         </div>
       </div>
     </div>

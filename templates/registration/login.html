@@ -111,7 +111,24 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+
         <h1><span style="color: yellow;">Log</span>.in</h1>
+        {% if form.errors %}
+            <p id="flash-message" class="error" style="color: red; font-weight: bolder;">Invalid username or password!</p>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var flashMessage = document.getElementById('flash-message');
+        
+                    function flash() {
+                        flashMessage.style.visibility = (flashMessage.style.visibility === 'hidden') ? 'visible' : 'hidden';
+                    }
+        
+                    // Flash the message every 500 milliseconds (adjust the time as needed)
+                    setInterval(flash, 500);
+                });
+            </script>
+        {% endif %}
+    
             <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
                 {% csrf_token %}
                 <div class="form-group">
